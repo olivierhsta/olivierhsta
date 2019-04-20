@@ -1,0 +1,96 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+@import 'node_modules/bulma/bulma.sass';
+@import 'node_modules/font-awesome/scss/font-awesome.scss';
+
+@import url('https://rsms.me/inter/inter.css');
+html, body { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  html, body { font-family: 'Inter var', sans-serif; }
+}
+
+
+// padding and margin helpers
+// sourcce : https://github.com/jgthms/bulma/issues/451#issuecomment-331758839
+$sizeUnit: rem;
+$marginKey: 'm';
+$paddingKey: 'p';
+$separator: '-';
+$important: 'i';
+$sizes: ( ('none', 0), ('xxs', 0.125), ('xs', 0.25), ('sm', 0.5), ('md', 1), ('lg', 2), ('xl', 4), ('xxl', 8), );
+$positions: ( ('t', 'top'), ('r', 'right'), ('b', 'bottom'), ('l', 'left') );
+
+@function sizeValue($key, $value) {
+    @return if($key == 'none', 0, $value + $sizeUnit);
+}
+@each $size in $sizes {
+    $sizeKey: nth($size, 1);
+    $sizeValue: nth($size, 2);
+    .#{$marginKey}#{$separator}#{$sizeKey} {
+        margin: sizeValue($sizeKey, $sizeValue);
+    }
+    .#{$paddingKey}#{$separator}#{$sizeKey} {
+        padding: sizeValue($sizeKey, $sizeValue);
+    }
+    @each $position in $positions {
+        $posKey: nth($position, 1);
+        $posValue: nth($position, 2);
+        .#{$marginKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
+            margin-#{$posValue}: sizeValue($sizeKey, $sizeValue);
+        }
+        .#{$paddingKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey} {
+            padding-#{$posValue}: sizeValue($sizeKey, $sizeValue);
+        }
+        .#{$marginKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey}#{$separator}#{$important} {
+            margin-#{$posValue}: sizeValue($sizeKey, $sizeValue) !important;
+        }
+        .#{$paddingKey}#{$separator}#{$posKey}#{$separator}#{$sizeKey}#{$separator}#{$important} {
+            padding-#{$posValue}: sizeValue($sizeKey, $sizeValue) !important;
+        }
+    }
+}
+
+.ohs-nav-link {
+    text-decoration:none;
+    color:black;
+}
+
+.d-flex {
+  display: flex;
+}
+
+h1 > span {
+    // font-family: Rockwell, Monaco, monospace;
+    padding-left: 2px;
+    padding-right:2px;
+    font-weight:bold;
+    font-size:130%;
+    color: #f2f2f2;
+    background: #ff4a4a;
+}
+
+h1.ohs-title {
+    font-variation-settings: 'wght' 1000;
+    font-size:7vw;
+}
+
+.social-links i {
+    color:#000000;
+}
+
+.fa-github:hover {
+    color:#9600bd;
+}
+
+.fa-twitter:hover {
+    color: #1da1f2;
+}
+
+.fa-linkedin:hover {
+    color:#0077B5;
+}
