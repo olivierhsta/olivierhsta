@@ -6,12 +6,14 @@
 @import 'variables';
 
 @import 'node_modules/bulma/bulma.sass';
-@import 'node_modules/font-awesome/scss/font-awesome.scss';
+@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import "@fortawesome/fontawesome-free/scss/solid.scss";
+@import "@fortawesome/fontawesome-free/scss/brands.scss";
 
 @import url('https://rsms.me/inter/inter.css');
 html, body { font-family: 'Inter', sans-serif; }
 @supports (font-variation-settings: normal) {
-  html, body { font-family: 'Inter var', sans-serif; }
+    html, body { font-family: 'Inter var', sans-serif; }
 }
 
 
@@ -55,9 +57,19 @@ $positions: ( ('t', 'top'), ('r', 'right'), ('b', 'bottom'), ('l', 'left') );
     }
 }
 
-.ohs-nav-link {
-    text-decoration:none;
-    color:black;
+html,body,
+.full-page {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.bg-dark {
+    background-color: $color9;
 }
 
 .d-flex {
@@ -66,31 +78,16 @@ $positions: ( ('t', 'top'), ('r', 'right'), ('b', 'bottom'), ('l', 'left') );
 
 h1 > span {
     // font-family: Rockwell, Monaco, monospace;
-    padding-left: 2px;
-    padding-right:2px;
+    padding-left: 5px;
+    padding-right:5px;
     font-weight:bold;
     font-size:130%;
-    color: #f2f2f2;
-    background: #ff4a4a;
+    color: $color0;
+    background: $color9;
+    box-decoration-break:clone;
 }
 
 h1.ohs-title {
     font-variation-settings: 'wght' 1000;
-    font-size:7vw;
-}
-
-.social-links i {
-    color:#000000;
-}
-
-.fa-github:hover {
-    color:#9600bd;
-}
-
-.fa-twitter:hover {
-    color: #1da1f2;
-}
-
-.fa-linkedin:hover {
-    color:#0077B5;
+    font-size:4vw;
 }

@@ -17,40 +17,27 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
 </head>
 <body>
-
-    <body>
-        {{-- @include ('layouts.flash') --}}
-
-        <div class="columns">
-            <div class="column is-9">
-                <section class="hero is-medium is-light">
-                  <div class="hero-body p-t-lg-i p-b-lg-i">
-                      <h1 class="title ohs-title p-b-md">
-                          <span>@yield('title')</span>
-                      </h1>
-                      <h2 class="subtitle">
-                          <span>@yield('subtitle')</span>
-                      </h2>
-                  </div>
+    <div id="app" class="full-page">
+        <div class="columns full-page">
+            <div class="column is-9 p-none">
+                <section class="hero full-height is-medium is-light">
+                    <div class="hero-body p-t-lg-i p-b-lg-i">
+                        <h1 class="title ohs-title p-b-md">
+                            <span>@yield('title')</span>
+                        </h1>
+                        <h2 class="subtitle">
+                            <span>@yield('subtitle')</span>
+                        </h2>
+                    </div>
                 </section>
                 <br />
                 @yield('content')
             </div>
-            <div class="column is-3 m-l-xl p-r-xl">
-                @include('layouts.sidebar')
-            </div>
+            <sidebar class="column is-3 p-none m-none" current="Home"></sidebar>
         </div>
-
-        <br />
-
-
-        {{-- @include ('layouts.footer') --}}
-    </body>
-
-    </html>
-
+    </div>
 </body>
 </html>

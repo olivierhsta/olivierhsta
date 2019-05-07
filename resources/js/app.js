@@ -21,6 +21,7 @@ window.Vue = require('vue');
 Vue.component('note-card', require('./components/NoteCard.vue').default);
 Vue.component('notes-count', require('./components/NotesCount.vue').default);
 Vue.component('note-modal', require('./components/NoteModal.vue').default);
+Vue.component('sidebar', require('./components/Sidebar.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

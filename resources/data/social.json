@@ -1,0 +1,25 @@
+[{
+    "title": "/olivierhsta on GitHub",
+    "fontawesome":  "fab fa-github",
+    "url": "https://github.com/olivierhsta"
+},
+{
+    "title": "/olivier-hassaoui-st-amour-bb7171149 on linkedin",
+    "fontawesome":  "fab fa-linkedin-in",
+    "url": "https://www.linkedin.com/in/olivier-hassaoui-st-amour-bb7171149/"
+},
+{
+    "title": "@OlivierHStA on Twitter",
+    "fontawesome":  "fab fa-twitter",
+    "url": "https://twitter.com/OlivierHStA"
+},
+{
+    "title": "olivier@hassaoui.com",
+    "fontawesome":  "fas fa-at",
+    "url": "mailto:olivier@hassaoui.com"
+},
+{
+    "title":"olivierhsta on StackOverflow",
+    "fontawesome": "fab fa-stack-overflow",
+    "url":"https://stackoverflow.com/users/7507867/olivierhsta"
+}]
