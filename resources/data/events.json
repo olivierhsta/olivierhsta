@@ -1,0 +1,102 @@
+[{
+    "title": "Work history",
+    "icon": {
+        "fontawesome": "fas fa-suitcase"
+    },
+    "events": [{
+        "title": "Full-stack developer",
+        "subtitle": "Integratik",
+        "startdate": {
+            "year": "2018",
+            "month":"09",
+            "day":"1"
+        },
+        "enddate": {
+            "year": "2018",
+            "month":"12",
+            "day":"21"
+        },
+        "description":"For the last few month of 2018 I worked at Integratik inc.  where I developed features for a web application used internally by a large medical company for managing their clients base."
+    },
+    {
+        "title": "Full-stack developer Internship",
+        "subtitle":"Insum Solution",
+        "startdate": {
+            "year": "2018",
+            "month":"06",
+            "day":"28"
+        },
+        "enddate": {
+            "year": "2018",
+            "month":"08",
+            "day":"21"
+        },
+        "description":"During the summer of 2018, I had an internship at Insum Solution inc. where I followed a formation for Oracle APEX and PL/SQL before building small websites using those tools of Rapid Application Development."
+    },
+    {
+        "title": "IT Specialist Internship",
+        "subtitle": "Civilia",
+        "startdate": {
+            "year": "2018",
+            "month":"01",
+            "day":"15"
+        },
+        "enddate": {
+            "year": "2018",
+            "month":"04",
+            "day":"21"
+        },
+        "description":"At the begining of 2018, I had my first internship at Civilia inc.  There, I built tools to analyse public transportation data and built a web application to give a simple user interface for clients to use the solutions offered by Civilia."
+    }]
+  },
+  {
+      "title": "Education history",
+      "icon": {
+          "fontawesome": "fas fa-user-graduate"
+      },
+      "events": [{
+          "title": "Bachelor in Computer Science",
+          "subtitle": "Université de Montréal",
+          "startdate": {
+              "year": "2016",
+              "month":"09",
+              "day":"1"
+          },
+          "enddate": {
+              "year": "2019",
+              "month":"12",
+              "day":"21"
+          },
+          "description":"From 2016 to 2019, I followed my bachelor where I learned about computer architecture, web developpement, software development, databases, theorical computer sciences and many other subjects."
+      },
+      {
+          "title": "DEC en Sciences Informatique et Mathématique",
+          "subtitle":"Collège du Bois-de-Boulogne",
+          "startdate": {
+              "year": "2014",
+              "month":"08",
+              "day":"25"
+          },
+          "enddate": {
+              "year": "2016",
+              "month":"05",
+              "day":"21"
+          },
+          "description":"In 2016, I graduated from the Bois-de-Boulogne CEGEP with a DEC focused on mathematics and software developement."
+      },
+      {
+          "title": "High school diploma",
+          "subtitle": "Collège Mont-Saint-Louis",
+          "startdate": {
+              "year": "2009",
+              "month":"09",
+              "day":"01"
+          },
+          "enddate": {
+              "year": "2014",
+              "month":"06",
+              "day":"23"
+          },
+          "description":"Optained my high school diploma with advanced mathematic and sciences classes."
+      }]
+}]

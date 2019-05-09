@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master', array('current'=>'TIL'))
 
 @section('title')
     today i learned...

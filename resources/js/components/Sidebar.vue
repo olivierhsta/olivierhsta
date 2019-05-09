@@ -6,8 +6,8 @@
                     <img class="is-rounded" src="img/me.jpg">
                 </figure>
             </div>
-            <div class="column is-8 m-l-md">
-                <h1 class="is-vcentered"><span id="sidebar-name">{{ name }}</span></h1>
+            <div class="column is-9">
+                <h1><span id="sidebar-name" class="contrast">{{ name }}</span></h1>
             </div>
         </div>
 
@@ -25,7 +25,7 @@
             <a  :class="getNavItemClass('Home')" class="tag ohs-nav-tag" href="/">
                 Home
             </a>
-            <a class="tag ohs-nav-tag" href="/til">
+            <a :class="getNavItemClass('TIL')" class="tag ohs-nav-tag" href="/til">
                 TIL
             </a>
         </div>

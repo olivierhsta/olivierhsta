@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Olivier Hassaoui St-Amour') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -22,21 +22,21 @@
 <body>
     <div id="app" class="full-page">
         <div class="columns full-page">
-            <div class="column is-9 p-none">
-                <section class="hero full-height is-medium is-light">
+            <div class="column is-9 p-none full-height">
+                <section class="hero is-medium is-light">
                     <div class="hero-body p-t-lg-i p-b-lg-i">
                         <h1 class="title ohs-title p-b-md">
-                            <span>@yield('title')</span>
+                            <span class="contrast">@yield('title')</span>
                         </h1>
                         <h2 class="subtitle">
-                            <span>@yield('subtitle')</span>
+                            <i><span>@yield('subtitle')</span></i>
                         </h2>
                     </div>
                 </section>
                 <br />
                 @yield('content')
             </div>
-            <sidebar class="column is-3 p-none m-none" current="Home"></sidebar>
+            <sidebar class="column is-3 p-none m-none" current="{{$current}}"></sidebar>
         </div>
     </div>
 </body>
