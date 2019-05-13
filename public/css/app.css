@@ -17511,6 +17511,31 @@ body,
   padding: 0px;
 }
 
+.f-box {
+  display: flex;
+  transition: width 0.5s ease;
+}
+
+.column.is-115 {
+  flex: none;
+  width: 95.8333%;
+}
+
+.column.is-95 {
+  flex: none;
+  width: 79.1667%;
+}
+
+.column.is-25 {
+  flex: none;
+  width: 20.8333%;
+}
+
+.column.is-05 {
+  flex: none;
+  width: 4.1667%;
+}
+
 .full-height {
   height: 100%;
 }

@@ -71,6 +71,10 @@
             margin-left: 0.5em;
         }
 
+        .timeline-group-title {
+            font-size: 160%;
+        }
+
         .timeline-subtitle {
             color:$color6;
             padding: 0 0.5em;
