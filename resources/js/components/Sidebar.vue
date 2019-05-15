@@ -15,11 +15,11 @@
         </div>
 
         <div class="tags p-t-md">
-            <a  :class="getNavItemClass('Home') + ' tag ohs-nav-tag'" href="/">
-                Home
+            <a  :class="getNavItemClass('Home') + ' tag ohs-nav-tag'" href="/" title="Home">
+                <i class="fas fa-home"></i>{{ homeName }}
             </a>
-            <a :class="getNavItemClass('TIL') + ' tag ohs-nav-tag'" href="/til">
-                TIL
+            <a :class="getNavItemClass('TIL') + ' tag ohs-nav-tag'" href="/til" title="Today I Learned">
+                <i class="fas fa-bookmark"></i>{{ tilName }}
             </a>
         </div>
 
@@ -47,13 +47,18 @@
             return  {
                 socials: socialData,
                 personnal: personnalData,
-                selectedtag:"Home",
                 sidebarHiddenClass:''
             };
         },
         computed: {
             name() {
                 return this.personnal.name.toLowerCase();
+            },
+            homeName() {
+                return this.sidebarHiddenClass == '' ? 'Home' : '';
+            },
+            tilName() {
+                return this.sidebarHiddenClass == '' ? 'TIL' : '';
             }
         },
         methods:{
@@ -86,6 +91,7 @@
         right:0;
         padding-top: 2em;
         padding-left: 3%;
+        padding-right: 2%;
         background-color: $color9;
         transition: all 0.5s ease;
 
@@ -106,24 +112,29 @@
                 width: 0;
             }
 
+            & .ohs-nav-tag {
+                width: 100%;
+                margin-top:0.2rem;
+                transition: width 1s ease;
+
+                & .fas {
+                    margin-right: 0;
+                }
+            }
+
             .tags .tag:not(:last-child) {
                 margin-right: 0rem;
             }
 
             .social-links {
                 text-align: center;
+                width: 100%;
 
                 & a {
                     margin-right:0;
                 }
             }
         }
-
-        & h1 {
-            font-size: 1.5vw;
-        }
-
-
 
         & span {
             color: $color9;
@@ -167,6 +178,7 @@
         position: absolute;
         bottom:0;
         right: 0;
+        text-align: center;
 
         & a {
             margin-bottom: 1vh;
@@ -176,18 +188,12 @@
         & i {
             color:#000000;
             background-color: $color0;
-            padding-top:25%;
+            padding-top:22%;
             width:100%;
             height:100%;
             text-align:center;
             border-radius: 0.3em;
         }
-
-        // & .fa-lg {
-        //     font-size: 1.3333333333vw;
-        //     line-height: 1.1vw;
-        //     vertical-align: -0.0667em;
-        // }
     }
 
     .fa-github:hover {
@@ -210,21 +216,33 @@
         color:#f48024;
     }
 
-    .ohs-nav-tag {
-        display : inline-block;
-        text-decoration:none !important;
-        color:$color9 !important;
-        background-color: $color0 !important;
+    .tag.ohs-nav-tag {
+        text-decoration: none !important;
+        color: #0b7285;
+        background-color: #e3fafc;
         font-weight: bold;
         margin: 0;
-        width: 4.1667vw;
-        font-size: 0.8vw !important;
+        width: 4rem;
+        transition: width 0.1s ease;
 
-        &:hover {
-            color:$color6 !important;
-        }
         &.is-active {
-            text-decoration: underline !important;
+            color:$color0;
+            background-color: $color9;
+            border: 2px solid $color0;
+
+            &:hover {
+                color:$color9;
+                background-color: $color0;
+            }
+        }
+        &:hover {
+            color:$color0;
+            background-color: $color9;
+            border: 1px solid $color0;
+        }
+
+        & .fas {
+            margin-right: 0.25em;
         }
     }
 

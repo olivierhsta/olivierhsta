@@ -47,18 +47,6 @@
         margin-left: 1em;
         height: 100%;
 
-        &:before {
-            position: fixed;
-            left: 3.8em;
-            top: 0;
-            content: ' ';
-            display: block;
-            width: 6px;
-            height: 100%;
-            background: $light-gray;
-            z-index: -5;
-        }
-
         .timeline-header, .timeline-group-header {
             display:flex;
         }
@@ -83,32 +71,49 @@
 
         .timeline-date, .timeline-group-icon {
             display: inline-block;
-            border: 2px solid $color9;
-            margin-left: -2.6em;
-            background-color: $body-bg;
-            color:$color9;
             font-weight: 200;
-            padding: 0.6em 0.3em 0.6em 0.3em;
             border-radius: 50%;
+            text-align: center;
         }
 
         .timeline-date {
-            height: 3em;
+            height: 3rem;
+            width: 3rem;
+            padding: 0.6em 0;
+            margin-left: -1.4em;
+            color:$color9;
+            background-color: $body-bg;
+
+            border: 2px solid $color9;
         }
 
         .timeline-group-icon {
+            height: 4.5rem;
+            width: 4.5rem;
+            padding: 0.4em 0;
+            margin-left: -1.15em;
             color: $color0;
             background-color: $color9;
+
             font-size: 30px;
-            margin-left: -1.7em;
-            padding: 0.3em 0.6em 0.3em 0.6em;
         }
 
         .timeline-group {
-            position: relative;
-            left: 4em;
             width:100%;
-            margin-top:3em;
+            padding-top:3em;
+            margin-left: 3rem;
+
+            background-image: linear-gradient($light-gray, 100%, white); // white is a dummy value
+            background-size:6px 100%;
+            background-position:0 0, 100% 0;
+            background-repeat:no-repeat;
+
+            &:first-child {
+                background-image: linear-gradient($body-bg, 5%, $light-gray);
+            }
+            &:last-child {
+                background-image: linear-gradient($light-gray, 95%, $body-bg);
+            }
         }
 
         .timeline-item {
@@ -117,6 +122,7 @@
 
         .timeline-description {
             padding: 1em;
+            margin-left: 1em;
             border:3px solid $color0;
             border-radius: 1em;
             font-weight: 200;

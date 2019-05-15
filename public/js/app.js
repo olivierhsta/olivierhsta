@@ -372,13 +372,18 @@ var _data_social_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__we
     return {
       socials: _data_social_json__WEBPACK_IMPORTED_MODULE_1__,
       personnal: _data_personnal_json__WEBPACK_IMPORTED_MODULE_0__,
-      selectedtag: "Home",
       sidebarHiddenClass: ''
     };
   },
   computed: {
     name: function name() {
       return this.personnal.name.toLowerCase();
+    },
+    homeName: function homeName() {
+      return this.sidebarHiddenClass == '' ? 'Home' : '';
+    },
+    tilName: function tilName() {
+      return this.sidebarHiddenClass == '' ? 'TIL' : '';
     }
   },
   methods: {
@@ -465,7 +470,7 @@ var _data_events_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__we
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".sidebar {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  top: 0;\n  right: 0;\n  padding-top: 2em;\n  padding-left: 3%;\n  background-color: #0b7285;\n  transition: all 0.5s ease;\n}\n.sidebar.is-closed {\n  padding-left: 0.25em;\n  padding-right: 0.25em;\n  text-align: center;\n}\n.sidebar.is-closed #sidebar-name {\n  display: none;\n}\n.sidebar.is-closed .profile-pic-container {\n  width: 100%;\n}\n.sidebar.is-closed .name-container {\n  width: 0;\n}\n.sidebar.is-closed .tags .tag:not(:last-child) {\n  margin-right: 0rem;\n}\n.sidebar.is-closed .social-links {\n  text-align: center;\n}\n.sidebar.is-closed .social-links a {\n  margin-right: 0;\n}\n.sidebar h1 {\n  font-size: 1.5vw;\n}\n.sidebar span {\n  color: #0b7285;\n  background: #e3fafc;\n  line-height: 1.3em;\n}\n.sidebar .profile-pic-container {\n  display: block;\n  flex: none;\n  padding: 0;\n  width: 33.3333%;\n  transition: all 0.6s ease;\n}\n.sidebar .name-container {\n  display: block;\n  padding: 0.75rem;\n  flex: none;\n  width: 66.66667%;\n  transition: all 0.6s ease;\n}\n.sidebar #profile-pic {\n  padding-top: 1.5em;\n}\n.sidebar #toggle-sidebar {\n  position: absolute;\n  top: 0;\n  right: 0;\n  color: #e3fafc;\n  background-color: #0b7285;\n  padding: 0.15em 0.5em;\n  border-radius: 50%;\n  font-size: large;\n}\n.social-links {\n  position: absolute;\n  bottom: 0;\n  right: 0;\n}\n.social-links a {\n  margin-bottom: 1vh;\n  margin-right: 0.5vw;\n}\n.social-links i {\n  color: #000000;\n  background-color: #e3fafc;\n  padding-top: 25%;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  border-radius: 0.3em;\n}\n.fa-github:hover {\n  color: #9600bd;\n}\n.fa-twitter:hover {\n  color: #1da1f2;\n}\n.fa-linkedin-in:hover {\n  color: #0077B5;\n}\n.fa-at:hover {\n  color: #8a90c7;\n}\n.fa-stack-overflow:hover {\n  color: #f48024;\n}\n.ohs-nav-tag {\n  display: inline-block;\n  text-decoration: none !important;\n  color: #0b7285 !important;\n  background-color: #e3fafc !important;\n  font-weight: bold;\n  margin: 0;\n  width: 4.1667vw;\n  font-size: 0.8vw !important;\n}\n.ohs-nav-tag:hover {\n  color: #15aabf !important;\n}\n.ohs-nav-tag.is-active {\n  text-decoration: underline !important;\n}", ""]);
+exports.push([module.i, ".sidebar {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  top: 0;\n  right: 0;\n  padding-top: 2em;\n  padding-left: 3%;\n  padding-right: 2%;\n  background-color: #0b7285;\n  transition: all 0.5s ease;\n}\n.sidebar.is-closed {\n  padding-left: 0.25em;\n  padding-right: 0.25em;\n  text-align: center;\n}\n.sidebar.is-closed #sidebar-name {\n  display: none;\n}\n.sidebar.is-closed .profile-pic-container {\n  width: 100%;\n}\n.sidebar.is-closed .name-container {\n  width: 0;\n}\n.sidebar.is-closed .ohs-nav-tag {\n  width: 100%;\n  margin-top: 0.2rem;\n  transition: width 1s ease;\n}\n.sidebar.is-closed .ohs-nav-tag .fas {\n  margin-right: 0;\n}\n.sidebar.is-closed .tags .tag:not(:last-child) {\n  margin-right: 0rem;\n}\n.sidebar.is-closed .social-links {\n  text-align: center;\n  width: 100%;\n}\n.sidebar.is-closed .social-links a {\n  margin-right: 0;\n}\n.sidebar span {\n  color: #0b7285;\n  background: #e3fafc;\n  line-height: 1.3em;\n}\n.sidebar .profile-pic-container {\n  display: block;\n  flex: none;\n  padding: 0;\n  width: 33.3333%;\n  transition: all 0.6s ease;\n}\n.sidebar .name-container {\n  display: block;\n  padding: 0.75rem;\n  flex: none;\n  width: 66.66667%;\n  transition: all 0.6s ease;\n}\n.sidebar #profile-pic {\n  padding-top: 1.5em;\n}\n.sidebar #toggle-sidebar {\n  position: absolute;\n  top: 0;\n  right: 0;\n  color: #e3fafc;\n  background-color: #0b7285;\n  padding: 0.15em 0.5em;\n  border-radius: 50%;\n  font-size: large;\n}\n.social-links {\n  position: absolute;\n  bottom: 0;\n  right: 0;\n  text-align: center;\n}\n.social-links a {\n  margin-bottom: 1vh;\n  margin-right: 0.5vw;\n}\n.social-links i {\n  color: #000000;\n  background-color: #e3fafc;\n  padding-top: 22%;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  border-radius: 0.3em;\n}\n.fa-github:hover {\n  color: #9600bd;\n}\n.fa-twitter:hover {\n  color: #1da1f2;\n}\n.fa-linkedin-in:hover {\n  color: #0077B5;\n}\n.fa-at:hover {\n  color: #8a90c7;\n}\n.fa-stack-overflow:hover {\n  color: #f48024;\n}\n.tag.ohs-nav-tag {\n  text-decoration: none !important;\n  color: #0b7285;\n  background-color: #e3fafc;\n  font-weight: bold;\n  margin: 0;\n  width: 4rem;\n  transition: width 0.1s ease;\n}\n.tag.ohs-nav-tag.is-active {\n  color: #e3fafc;\n  background-color: #0b7285;\n  border: 2px solid #e3fafc;\n}\n.tag.ohs-nav-tag.is-active:hover {\n  color: #0b7285;\n  background-color: #e3fafc;\n}\n.tag.ohs-nav-tag:hover {\n  color: #e3fafc;\n  background-color: #0b7285;\n  border: 1px solid #e3fafc;\n}\n.tag.ohs-nav-tag .fas {\n  margin-right: 0.25em;\n}", ""]);
 
 
 
@@ -480,7 +485,7 @@ exports.push([module.i, ".sidebar {\n  position: fixed;\n  width: 100%;\n  heigh
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".timeline {\n  margin-left: 1em;\n  height: 100%;\n}\n.timeline:before {\n  position: fixed;\n  left: 3.8em;\n  top: 0;\n  content: \" \";\n  display: block;\n  width: 6px;\n  height: 100%;\n  background: rgba(80, 80, 80, 0.1);\n  z-index: -5;\n}\n.timeline .timeline-header, .timeline .timeline-group-header {\n  display: flex;\n}\n.timeline .timeline-title, .timeline .timeline-subtitle, .timeline .timeline-group-title {\n  display: flex;\n  align-items: center;\n  /* Vertical center alignment */\n  color: #15aabf;\n  font-weight: bold;\n  margin-left: 0.5em;\n}\n.timeline .timeline-group-title {\n  font-size: 160%;\n}\n.timeline .timeline-subtitle {\n  color: #15aabf;\n  padding: 0 0.5em;\n  font-weight: 200;\n}\n.timeline .timeline-date, .timeline .timeline-group-icon {\n  display: inline-block;\n  border: 2px solid #0b7285;\n  margin-left: -2.6em;\n  background-color: white;\n  color: #0b7285;\n  font-weight: 200;\n  padding: 0.6em 0.3em 0.6em 0.3em;\n  border-radius: 50%;\n}\n.timeline .timeline-date {\n  height: 3em;\n}\n.timeline .timeline-group-icon {\n  color: #e3fafc;\n  background-color: #0b7285;\n  font-size: 30px;\n  margin-left: -1.7em;\n  padding: 0.3em 0.6em 0.3em 0.6em;\n}\n.timeline .timeline-group {\n  position: relative;\n  left: 4em;\n  width: 100%;\n  margin-top: 3em;\n}\n.timeline .timeline-item {\n  margin-top: 2em;\n}\n.timeline .timeline-description {\n  padding: 1em;\n  border: 3px solid #e3fafc;\n  border-radius: 1em;\n  font-weight: 200;\n}", ""]);
+exports.push([module.i, ".timeline {\n  margin-left: 1em;\n  height: 100%;\n}\n.timeline .timeline-header, .timeline .timeline-group-header {\n  display: flex;\n}\n.timeline .timeline-title, .timeline .timeline-subtitle, .timeline .timeline-group-title {\n  display: flex;\n  align-items: center;\n  /* Vertical center alignment */\n  color: #15aabf;\n  font-weight: bold;\n  margin-left: 0.5em;\n}\n.timeline .timeline-group-title {\n  font-size: 160%;\n}\n.timeline .timeline-subtitle {\n  color: #15aabf;\n  padding: 0 0.5em;\n  font-weight: 200;\n}\n.timeline .timeline-date, .timeline .timeline-group-icon {\n  display: inline-block;\n  font-weight: 200;\n  border-radius: 50%;\n  text-align: center;\n}\n.timeline .timeline-date {\n  height: 3rem;\n  width: 3rem;\n  padding: 0.6em 0;\n  margin-left: -1.4em;\n  color: #0b7285;\n  background-color: white;\n  border: 2px solid #0b7285;\n}\n.timeline .timeline-group-icon {\n  height: 4.5rem;\n  width: 4.5rem;\n  padding: 0.4em 0;\n  margin-left: -1.15em;\n  color: #e3fafc;\n  background-color: #0b7285;\n  font-size: 30px;\n}\n.timeline .timeline-group {\n  width: 100%;\n  padding-top: 3em;\n  margin-left: 3rem;\n  background-image: linear-gradient(whitesmoke, 100%, white);\n  background-size: 6px 100%;\n  background-position: 0 0, 100% 0;\n  background-repeat: no-repeat;\n}\n.timeline .timeline-group:first-child {\n  background-image: linear-gradient(white, 5%, whitesmoke);\n}\n.timeline .timeline-group:last-child {\n  background-image: linear-gradient(whitesmoke, 95%, white);\n}\n.timeline .timeline-item {\n  margin-top: 2em;\n}\n.timeline .timeline-description {\n  padding: 1em;\n  margin-left: 1em;\n  border: 3px solid #e3fafc;\n  border-radius: 1em;\n  font-weight: 200;\n}", ""]);
 
 
 
@@ -2082,18 +2087,24 @@ var render = function() {
         "a",
         {
           class: _vm.getNavItemClass("Home") + " tag ohs-nav-tag",
-          attrs: { href: "/" }
+          attrs: { href: "/", title: "Home" }
         },
-        [_vm._v("\n            Home\n        ")]
+        [
+          _c("i", { staticClass: "fas fa-home" }),
+          _vm._v(_vm._s(_vm.homeName) + "\n        ")
+        ]
       ),
       _vm._v(" "),
       _c(
         "a",
         {
           class: _vm.getNavItemClass("TIL") + " tag ohs-nav-tag",
-          attrs: { href: "/til" }
+          attrs: { href: "/til", title: "Today I Learned" }
         },
-        [_vm._v("\n            TIL\n        ")]
+        [
+          _c("i", { staticClass: "fas fa-bookmark" }),
+          _vm._v(_vm._s(_vm.tilName) + "\n        ")
+        ]
       )
     ]),
     _vm._v(" "),
