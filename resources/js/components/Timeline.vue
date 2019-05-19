@@ -45,6 +45,7 @@
 
     .timeline {
         margin-left: 1em;
+        margin-top: 1rem;
         height: 100%;
 
         .timeline-header, .timeline-group-header {
@@ -109,10 +110,10 @@
             background-repeat:no-repeat;
 
             &:first-child {
-                background-image: linear-gradient($body-bg, 5%, $light-gray);
+                padding-top: 0;
             }
             &:last-child {
-                background-image: linear-gradient($light-gray, 95%, $body-bg);
+                background-image: linear-gradient($light-gray, 90%, $body-bg);
             }
         }
 

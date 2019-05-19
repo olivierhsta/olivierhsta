@@ -17511,8 +17511,7 @@ body,
   padding: 0px;
 }
 
-.f-box {
-  display: flex;
+.column {
   transition: width 0.5s ease;
 }
 
@@ -17550,6 +17549,10 @@ body,
 
 .d-flex {
   display: flex;
+}
+
+.d-none {
+  display: none;
 }
 
 span.contrast {

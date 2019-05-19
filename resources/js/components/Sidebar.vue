@@ -1,9 +1,6 @@
 <template>
-    <div :class="'sidebar ' + sidebarHiddenClass">
-        <div id="toggle-sidebar" @click="toggleSidebar()">
-            <i class="fas fa-bars"></i>
-        </div>
-        <div class="f-box m-none">
+    <div class="sidebar">
+        <div class="sidebar-header m-none">
             <div class="profile-pic-container p-none m-none">
                 <figure id="profile-pic" class="image">
                     <img class="is-rounded" src="img/me.jpg">
@@ -42,12 +39,11 @@
     import socialData from "../../data/social.json";
 
     export default {
-        props: ['current'],
+        props: ['current','sidebarIsClosed'],
         data() {
             return  {
                 socials: socialData,
-                personnal: personnalData,
-                sidebarHiddenClass:''
+                personnal: personnalData
             };
         },
         computed: {
@@ -55,10 +51,10 @@
                 return this.personnal.name.toLowerCase();
             },
             homeName() {
-                return this.sidebarHiddenClass == '' ? 'Home' : '';
+                return this.sidebarIsClosed ? '' : 'Home';
             },
             tilName() {
-                return this.sidebarHiddenClass == '' ? 'TIL' : '';
+                return this.sidebarIsClosed ? '' : 'TIL';
             }
         },
         methods:{
@@ -67,14 +63,6 @@
                     return 'is-active';
                 } else {
                     return '';
-                }
-            },
-            toggleSidebar() {
-                this.$root.$emit('sidebar-toggle');
-                if (this.sidebarHiddenClass == '') {
-                    this.sidebarHiddenClass = 'is-closed';
-                } else {
-                    this.sidebarHiddenClass = '';
                 }
             }
         }
@@ -95,7 +83,46 @@
         background-color: $color9;
         transition: all 0.5s ease;
 
-        &.is-closed {
+        & span {
+            color: $color9;
+            background: $color0;
+            line-height: 1.3em;
+        }
+
+        .profile-pic-container {
+            display: block;
+            flex:none;
+            padding: 0;
+            width:33.3333%;
+            transition : all 0.6s ease;
+        }
+
+        .sidebar-header {
+            display: flex;
+            transition: width 0.5s ease;
+        }
+
+        .name-container {
+            display: block;
+            padding: 0.75rem 0 0.75rem 0.75rem;
+            flex:none;
+            width:66.66667%;
+            transition : all 0.6s ease;
+            font-size: 130%;
+        }
+
+        #profile-pic {
+            padding-top: 1.5em;
+        }
+
+        &.is-desktop.is-opened {
+            flex: none;
+            width: 20.8333%;
+        }
+
+        &.is-desktop.is-closed {
+            flex: none;
+            width: 4.1667%;
             padding-left: 0.25em;
             padding-right: 0.25em;
             text-align: center;
@@ -114,16 +141,12 @@
 
             & .ohs-nav-tag {
                 width: 100%;
-                margin-top:0.2rem;
+                margin-right: 0 !important;
                 transition: width 1s ease;
 
                 & .fas {
                     margin-right: 0;
                 }
-            }
-
-            .tags .tag:not(:last-child) {
-                margin-right: 0rem;
             }
 
             .social-links {
@@ -136,41 +159,52 @@
             }
         }
 
-        & span {
-            color: $color9;
-            background: $color0;
-            line-height: 1.3em;
-        }
-
-        .profile-pic-container {
-            display: block;
+        &.is-mobile {
             flex:none;
             padding: 0;
-            width:33.3333%;
-            transition : all 0.6s ease;
-        }
+            width: 100%;
+            transition: 0.4s ease;
 
-        .name-container {
-            display: block;
-            padding: 0.75rem;
-            flex:none;
-            width:66.66667%;
-            transition : all 0.6s ease;
-        }
+            & .sidebar-header {
+                display: inline-block;
+                width: 100%;
 
-        #profile-pic {
-            padding-top: 1.5em;
-        }
+                & .profile-pic-container {
+                    margin: auto;
 
-        #toggle-sidebar {
-            position: absolute;
-            top:0;
-            right: 0;
-            color:$color0;
-            background-color: $color9;
-            padding: 0.15em 0.5em;
-            border-radius: 50%;
-            font-size: large;
+                    #profile-pic img {
+                        width: auto;
+                        max-height: 50vh;
+                        margin: auto;
+                    }
+                }
+
+                & .name-container {
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+
+            & .tags {
+                display: inline-block;
+                width: 100%;
+                text-align: center;
+            }
+
+            & .social-links {
+                right: auto;
+                width: 100%;
+            }
+
+            &.is-opened {
+                clip-path: circle(100%);
+            }
+
+            &.is-closed {
+                top: -48%;
+                right: -48%;
+                clip-path: circle(0px);
+            }
         }
     }
 
@@ -188,7 +222,7 @@
         & i {
             color:#000000;
             background-color: $color0;
-            padding-top:22%;
+            padding-top:0.4em;
             width:100%;
             height:100%;
             text-align:center;
@@ -196,32 +230,12 @@
         }
     }
 
-    .fa-github:hover {
-        color:#9600bd;
-    }
-
-    .fa-twitter:hover {
-        color: #1da1f2;
-    }
-
-    .fa-linkedin-in:hover {
-        color:#0077B5;
-    }
-
-    .fa-at:hover {
-        color:#8a90c7;
-    }
-
-    .fa-stack-overflow:hover {
-        color:#f48024;
-    }
-
     .tag.ohs-nav-tag {
         text-decoration: none !important;
         color: #0b7285;
         background-color: #e3fafc;
         font-weight: bold;
-        margin: 0;
+        margin: 0 0.4rem 0.2rem 0 !important;
         width: 4rem;
         transition: width 0.1s ease;
 
@@ -244,6 +258,26 @@
         & .fas {
             margin-right: 0.25em;
         }
+    }
+
+    .fa-github:hover {
+        color:#9600bd;
+    }
+
+    .fa-twitter:hover {
+        color: #1da1f2;
+    }
+
+    .fa-linkedin-in:hover {
+        color:#0077B5;
+    }
+
+    .fa-at:hover {
+        color:#8a90c7;
+    }
+
+    .fa-stack-overflow:hover {
+        color:#f48024;
     }
 
 </style>
