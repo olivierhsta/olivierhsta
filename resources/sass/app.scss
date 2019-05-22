@@ -62,6 +62,7 @@ html,body,
     height: 100%;
     margin: 0px;
     padding: 0px;
+    background: $body-bg;
 }
 
 .column {
@@ -120,6 +121,11 @@ span.contrast {
 
 .subtitle {
     font-weight: 200;
+}
+
+.is-centered {
+    text-align: center;
+    margin:auto;
 }
 
 h1.ohs-title {

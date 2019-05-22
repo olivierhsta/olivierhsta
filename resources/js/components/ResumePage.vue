@@ -16,7 +16,10 @@
             </section>
             <br />
             <div class="columns">
-                <timeline class="column is-5"></timeline>
+                <timeline class="column is-6"></timeline>
+            </div>
+            <div class="columns">
+                <skills-view class="column is-7"></skills-view>
             </div>
         </div>
         <sidebar :class="'column '+sidebarClasses" current="Home" :sidebarIsClosed='sidebarIsClosed'></sidebar>
@@ -82,5 +85,9 @@
     margin: 0.5em;
     border-radius: 50%;
     z-index: 1000;
+}
+
+.skills-view {
+    padding-left: 5%;
 }
 </style>

@@ -46,7 +46,6 @@
     .timeline {
         margin-left: 1em;
         margin-top: 1rem;
-        height: 100%;
 
         .timeline-header, .timeline-group-header {
             display:flex;
@@ -95,7 +94,6 @@
             margin-left: -1.15em;
             color: $color0;
             background-color: $color9;
-
             font-size: 30px;
         }
 

@@ -24,6 +24,8 @@ Vue.component('note-modal', require('./components/NoteModal.vue').default);
 Vue.component('resume-page', require('./components/ResumePage.vue').default);
 Vue.component('sidebar', require('./components/Sidebar.vue').default);
 Vue.component('timeline', require('./components/Timeline.vue').default);
+Vue.component('skills-view', require('./components/SkillsView.vue').default);
+Vue.component('minimal-card', require('./components/MinimalCard.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

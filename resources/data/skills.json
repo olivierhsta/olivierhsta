@@ -1,0 +1,46 @@
+[{
+    "groupName":"Backend",
+    "skills":[{
+            "name": "Laravel",
+            "description":"2018-today",
+            "icon": {
+                "fontawesome": "fab fa-laravel"
+            },
+            "color": "#F05340"
+        },
+        {
+            "name": "PHP",
+            "description":"2018-today",
+            "icon": {
+                "fontawesome": "fab fa-php"
+            },
+            "color": "#787CB5"
+        }]
+},
+{
+    "groupName":"Frontend",
+    "skills":[{
+            "name": "JavaScript",
+            "description":"2016-today",
+            "icon": {
+                "fontawesome": "fab fa-js"
+            },
+            "color": "#F0DB4F"
+        },
+        {
+            "name": "CSS",
+            "description":"2016-today",
+            "icon": {
+                "fontawesome": "fab fa-css3"
+            },
+            "color": "#3C99DC"
+        },
+        {
+            "name": "HTML",
+            "description":"2016-today",
+            "icon": {
+                "fontawesome": "fab fa-html5"
+            },
+            "color": "#F16529"
+        }]
+}]

@@ -80,7 +80,8 @@
         padding-top: 2em;
         padding-left: 3%;
         padding-right: 2%;
-        background-color: $color9;
+        // background: linear-gradient(to right,$color9,80%,$color7);
+        background: linear-gradient(to right,$color7,20%,$color9);
         transition: all 0.5s ease;
 
         & span {
@@ -163,6 +164,7 @@
             flex:none;
             padding: 0;
             width: 100%;
+            z-index: 999;
             transition: 0.4s ease;
 
             & .sidebar-header {
@@ -189,6 +191,11 @@
                 display: inline-block;
                 width: 100%;
                 text-align: center;
+
+                & .tag {
+                    width: 6rem;
+                    height: 2rem;
+                }
             }
 
             & .social-links {
@@ -241,17 +248,17 @@
 
         &.is-active {
             color:$color0;
-            background-color: $color9;
+            background-color: transparent;
             border: 2px solid $color0;
 
-            &:hover {
+            &:hover, &:active {
                 color:$color9;
                 background-color: $color0;
             }
         }
-        &:hover {
+        &:hover, &:active {
             color:$color0;
-            background-color: $color9;
+            background-color: transparent;
             border: 1px solid $color0;
         }
 
