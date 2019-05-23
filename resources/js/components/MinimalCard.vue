@@ -1,15 +1,12 @@
 <template>
     <div class="minimal-card">
-        <div :class="'minimal-card-header '+this.iconClass" @click="toggleCardName">
-            <div class="minimal-card-icon" :style="'--background-color:'+this.iconBackgroundColor+';'">
+        <div class="minimal-card-header" @click="toggleCardName">
+            <div :class="'minimal-card-icon '+this.iconClass" :style="'--border-color:'+this.iconBackgroundColor+';'">
                 <i :class="fontawesomeIcon"></i>
             </div>
-            <div class="minimal-card-title" :style="'--border-color:'+this.iconBackgroundColor+';'">
-                <slot name="title"></slot>
+            <div  v-if="slotPassed" class="minimal-card-title" :style="'--border-color:'+this.iconBackgroundColor+';'">
+                <slot></slot>
             </div>
-        </div>
-        <div class="minimal-card-content" :style="'--border-color:'+this.iconBackgroundColor+';'">
-            <slot></slot>
         </div>
     </div>
 </template>
@@ -26,21 +23,27 @@
             toggleCardName() {
                 this.iconClass = (this.iconClass == '') ? 'was-clicked' : '';
             },
+        },
+        computed:{
+            slotPassed() {
+                return !!this.$slots.default;
+            }
         }
     }
 </script>
 
 <style lang="scss">
-
+@import "@/_variables.scss";
 .minimal-card-header {
     display: flex;
 
     .minimal-card-icon {
-        height: 4.5rem;
-        width: 4.5rem;
-        padding: 0.5em 0;
-        color: white;
-        background-color: var(--background-color);
+        height: 3.5rem;
+        width: 3.5rem;
+        padding: 0.22em 0;
+        color: var(--border-color);
+        border: 2px solid var(--border-color);
+        background-color: $body-bg;
         text-align: center;
         font-size: 30px;
         border-radius: 50%;
@@ -48,29 +51,30 @@
     }
 
     .minimal-card-title {
-        margin: 0 3rem 0 -2.5rem;
         border: 2px solid var(--border-color);
-        border-bottom: 0;
-        border-radius: 0 1em 0 0;
-        line-height: 4.3rem;
+        border-radius: 0 5em 5em 0;
+        text-align: center;
+        line-height: 3.3rem;
         z-index: 0;
-        font-size: 150%;
+        font-size: 130%;
         font-weight: 200;
+        width: auto;
+
+        max-width:0px;
+        margin: 0 2rem 0.5rem -1.7rem;
         color: transparent;
-        width: 0;
         padding: 0;
-        transition: all 0.5s ease 0.4s;
+        transition: all 0.5s ease;
 
     }
 
-    &:hover .minimal-card-title,
-    &.was-clicked .minimal-card-title {
-        width: 12rem;
-        padding: 0 0 0 0.7em;
-        margin: 0 1rem 0 -2.5rem;
+    .minimal-card-icon:hover ~ .minimal-card-title,
+    .minimal-card-icon.was-clicked ~ .minimal-card-title {
+        max-width: 20rem;
+        margin-right: 1rem;
         color: var(--border-color);
+        padding: 0 1.5em 0 2em;
         transition: all 0.5s ease;
-        text-align: center;
     }
 }
 

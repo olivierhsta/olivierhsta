@@ -1,46 +1,100 @@
 [{
-    "groupName":"Backend",
+    "title":"Backend",
+    "icon": "fas fa-server",
     "skills":[{
-            "name": "Laravel",
-            "description":"2018-today",
-            "icon": {
-                "fontawesome": "fab fa-laravel"
-            },
-            "color": "#F05340"
+            "name": "PHP",
+            "level":"90",
+            "icon": "fab fa-php",
+            "color": "#787CB5"
         },
         {
-            "name": "PHP",
-            "description":"2018-today",
-            "icon": {
-                "fontawesome": "fab fa-php"
-            },
-            "color": "#787CB5"
+            "name": "Laravel",
+            "level":"70",
+            "icon":"fab fa-laravel",
+            "color": "#F05340"
         }]
 },
 {
-    "groupName":"Frontend",
+    "title":"Database",
+    "icon":"fas fa-database",
     "skills":[{
-            "name": "JavaScript",
-            "description":"2016-today",
-            "icon": {
-                "fontawesome": "fab fa-js"
-            },
-            "color": "#F0DB4F"
+            "name": "MySQL",
+            "level":"80",
+            "icon": "icon-mysql",
+            "color": "#00758F"
         },
         {
-            "name": "CSS",
-            "description":"2016-today",
-            "icon": {
-                "fontawesome": "fab fa-css3"
-            },
+            "name": "Oracle SQL",
+            "level":"70",
+            "icon":"icon-oracle",
+            "color": "#F80102"
+        }]
+},
+{
+    "title":"Frontend",
+    "icon": "fas fa-laptop-code",
+    "skills":[{
+            "name": "HTML5",
+            "level":"100",
+            "icon": "fab fa-html5",
+            "color": "#F16529"
+        },
+        {
+            "name": "CSS3",
+            "level":"90",
+            "icon": "fab fa-css3",
             "color": "#3C99DC"
         },
         {
-            "name": "HTML",
-            "description":"2016-today",
-            "icon": {
-                "fontawesome": "fab fa-html5"
-            },
-            "color": "#F16529"
+            "name": "Sass",
+            "level":"70",
+            "icon": "icon-sass",
+            "color": "#CD6799"
+        },
+        {
+            "name": "JavaScript",
+            "level":"80",
+            "icon": "fab fa-js",
+            "color": "#323330"
+        },
+        {
+            "name": "Vue.js",
+            "level":"80",
+            "icon": "fab fa-vuejs",
+            "color": "#41B883"
+        },
+        {
+            "name": "jQuery",
+            "level":"80",
+            "icon": "icon-jquery",
+            "color": "#0868AC"
+        },
+        {
+            "name": "Bootstrap",
+            "level":"90",
+            "icon": "icon-bootstrap",
+            "color": "#553C7B   "
+        }]
+},
+{
+    "title":"Other",
+    "icon": "fas fa-keyboard",
+    "skills":[{
+            "name": "Java",
+            "level":"90",
+            "icon": "fab fa-java",
+            "color": "#ED1D25"
+        },
+        {
+            "name": "Python",
+            "level":"60",
+            "icon": "fab fa-python",
+            "color": "#306998"
+        },
+        {
+            "name": "Git",
+            "level":"70",
+            "icon": "icon-git",
+            "color": "#F1502F"
         }]
 }]

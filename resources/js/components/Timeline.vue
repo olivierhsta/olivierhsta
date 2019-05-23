@@ -8,14 +8,20 @@
                 <h1 class="timeline-group-title">{{ group.title }}</h1>
             </div>
             <div class="timeline-item" v-for="event in group.events">
-                <div class="timeline-header">
-                    <div class="timeline-date">{{ event.startdate.year }}</div>
-                    <h1 class="timeline-title">{{event.title}}</h1>
+                <timeline-event :event="event"></timeline-event>
+            </div>
+        </div>
+        <div class="timeline-group">
+            <div class="timeline-group-header">
+                <div class="timeline-group-header">
+                    <div class="timeline-group-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h1 class="timeline-group-title">My skills</h1>
                 </div>
-                <fieldset class="timeline-description">
-                    <legend class="timeline-subtitle">{{event.subtitle}}</legend>
-                    {{event.description}}
-                </fieldset>
+            </div>
+            <div class="timeline-item" v-for="skillGroup in skills">
+                <timeline-item :item="skillGroup"></timeline-item>
             </div>
         </div>
     </div>
@@ -23,11 +29,12 @@
 
 <script>
     import eventsData from "../../data/events.json";
+    import skillsData from "../../data/skills.json";
     export default {
-        // props: ['props'],
         data() {
             return  {
-                events:eventsData
+                events:eventsData,
+                skills:skillsData,
             };
         },
         methods: {
@@ -79,8 +86,8 @@
         .timeline-date {
             height: 3rem;
             width: 3rem;
-            padding: 0.6em 0;
-            margin-left: -1.4em;
+            padding: 0.7em 0;
+            margin-left: -1.32em;
             color:$color9;
             background-color: $body-bg;
 
@@ -90,7 +97,7 @@
         .timeline-group-icon {
             height: 4.5rem;
             width: 4.5rem;
-            padding: 0.4em 0;
+            padding: 0.45em 0;
             margin-left: -1.15em;
             color: $color0;
             background-color: $color9;
@@ -98,7 +105,6 @@
         }
 
         .timeline-group {
-            width:100%;
             padding-top:3em;
             margin-left: 3rem;
 
