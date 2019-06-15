@@ -84,6 +84,18 @@
         background: linear-gradient(to right,$color7,20%,$color9);
         transition: all 0.5s ease;
 
+        &::after {
+            content: "";
+            // background: url(/img/background.jpg) bottom center;
+            opacity: 0.1;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
+        }
+
         & span {
             color: $color9;
             background: $color0;

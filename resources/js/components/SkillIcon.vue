@@ -49,8 +49,8 @@
     position: relative;
     margin: 0.5rem;
     color: var(--border-color);
-    background: $body-bg;
-    padding: 0.7rem 0.15rem 0 0;
+    background: transparent;
+    padding: 0.8rem 0.2rem 0 0;
     text-align: center;
 }
 

@@ -96,5 +96,11 @@
             "level":"70",
             "icon": "icon-git",
             "color": "#F1502F"
+        },
+        {
+            "name":"LaTeX",
+            "level":"100",
+            "icon":"fas fa-align-left",
+            "color":"#000000"
         }]
 }]

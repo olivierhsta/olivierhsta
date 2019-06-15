@@ -16,7 +16,7 @@
             </section>
             <br />
             <div class="columns">
-                <timeline class="column is-6"></timeline>
+                <timeline class="column is-10"></timeline>
             </div>
         </div>
         <sidebar :class="'column '+sidebarClasses" current="Home" :sidebarIsClosed='sidebarIsClosed'></sidebar>

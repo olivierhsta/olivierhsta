@@ -129,6 +129,8 @@
             padding: 1em;
             margin-left: 1em;
             border:3px solid $color0;
+            // background: $color0;
+            // box-shadow: 1px 2px 2px #ccc;
             border-radius: 1em;
             font-weight: 200;
         }
