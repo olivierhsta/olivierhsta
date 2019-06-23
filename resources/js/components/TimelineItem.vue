@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="timeline-item">
         <div class="timeline-header">
             <div class="timeline-date">
                 <i :class="this.item.icon + ' fa-lg'"></i>
@@ -39,13 +39,16 @@
     }
 </script>
 
-<style>
-.timeline-description {
-    display: flex;
-    flex-flow: wrap;
+<style lang="scss">
+.timeline-item {
+    .timeline-description {
+        display: flex;
+        flex-flow: wrap;
+    }
+
+    .skill-icon {
+        margin-top: 1rem;
+    }
 }
 
-.skill-icon {
-    margin-top: 1rem;
-}
 </style>

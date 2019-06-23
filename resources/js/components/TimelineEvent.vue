@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="timeline-event">
         <div class="timeline-header">
             <div class="timeline-date">{{ this.event.startdate.year }}</div>
             <h1 class="timeline-title">{{ this.event.title}}</h1>

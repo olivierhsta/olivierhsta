@@ -12,6 +12,12 @@
             "level":"70",
             "icon":"fab fa-laravel",
             "color": "#F05340"
+        },
+        {
+            "name": "APEX",
+            "level":"70",
+            "icon":"fas fa-pencil-ruler",
+            "color": "#f29111"
         }]
 },
 {
@@ -28,6 +34,12 @@
             "level":"70",
             "icon":"icon-oracle",
             "color": "#F80102"
+        },
+        {
+            "name": "PL/SQL",
+            "level":"70",
+            "icon":"icon-plsql",
+            "color": "#000000"
         }]
 },
 {
@@ -81,7 +93,7 @@
     "icon": "fas fa-keyboard",
     "skills":[{
             "name": "Java",
-            "level":"90",
+            "level":"70",
             "icon": "fab fa-java",
             "color": "#ED1D25"
         },
@@ -100,7 +112,7 @@
         {
             "name":"LaTeX",
             "level":"100",
-            "icon":"fas fa-align-left",
+            "icon":"icon-tex",
             "color":"#000000"
         }]
 }]

@@ -5,6 +5,21 @@
     },
     "events": [{
         "title": "Full-stack developer",
+        "subtitle":"Insum Solution",
+        "startdate": {
+            "year": "Now",
+            "month":"",
+            "day":""
+        },
+        "enddate": {
+            "year": "",
+            "month":"",
+            "day":""
+        },
+        "description":"I started working at Insum Solution inc. at the begining of the summer of 2019, where I built internal applications using Oracle APEX and PL/SQL as well as traditionnal front-end technologies (HTML, CSS, JavaScript/jQuery)."
+    },
+    {
+        "title": "Full-stack developer",
         "subtitle": "Integratik",
         "startdate": {
             "year": "2018",
@@ -31,7 +46,7 @@
             "month":"08",
             "day":"21"
         },
-        "description":"During the summer of 2018, I had an internship at Insum Solution inc. where I followed a formation for Oracle APEX and PL/SQL before building small websites using those tools of Rapid Application Development."
+        "description":"During the summer of 2018, I had an internship at Insum Solution inc. where I followed a formation for Oracle APEX and PL/SQL before building small websites using those tools."
     },
     {
         "title": "IT Specialist Internship",

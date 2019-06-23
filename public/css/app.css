@@ -1,5 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.css);@import url(https://rsms.me/inter/inter.css);@charset "UTF-8";
 
+.icon-tex {
+  content: url("/svg/TeX.svg");
+  width: 60%;
+}
+
+.icon-plsql {
+  content: url("/svg/P.svg");
+  margin: -0.4rem -0.4rem 0 0;
+  width: 60%;
+}
+
 /*! bulma.io v0.7.2 | MIT License | github.com/jgthms/bulma */
 
 @-webkit-keyframes spinAround {

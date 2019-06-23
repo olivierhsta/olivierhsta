@@ -1,13 +1,13 @@
 <template>
     <div class="timeline">
-        <div class="timeline-group" v-for="group in events">
+        <div class="timeline-group" :style="'--number-rows:'+countEvents(group)+';'" v-for="group in events">
             <div class="timeline-group-header">
                 <div class="timeline-group-icon">
                     <i :class="group.icon.fontawesome"></i>
                 </div>
                 <h1 class="timeline-group-title">{{ group.title }}</h1>
             </div>
-            <div class="timeline-item" v-for="event in group.events">
+            <div class="timeline-element" :style="'--row-num:'+getRowNum(index)+';'" v-for="(event,index) in group.events">
                 <timeline-event :event="event"></timeline-event>
             </div>
         </div>
@@ -20,7 +20,7 @@
                     <h1 class="timeline-group-title">My skills</h1>
                 </div>
             </div>
-            <div class="timeline-item" v-for="skillGroup in skills">
+            <div class="timeline-element" :style="'--row-num:'+getRowNum(index)+';'" v-for="(skillGroup, index) in skills">
                 <timeline-item :item="skillGroup"></timeline-item>
             </div>
         </div>
@@ -38,11 +38,19 @@
             };
         },
         methods: {
-            /*
-            method: function (event) {
-                // content
+            countEvents : function (group) {
+                let i = 0;
+                for (let event in group.events) {
+                    i++;
+                }
+                return i;
             },
-            */
+            getRowNum : function(index) {
+                return index + 2;
+            },
+            isEven : function (num) {
+                return num % 2 === 0;
+            }
         }
     }
 </script>
@@ -50,12 +58,111 @@
 <style lang="scss">
     @import "@/_variables.scss";
 
+    // grid layout
+    .timeline-group {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 5.5rem repeat(var(--number-rows), max-content);
+
+        .timeline-group-header {
+            grid-column-start: 2;
+            grid-column-end: 2;
+            grid-row-start: 1;
+            grid-row-end: span 1;
+            margin: 0 0 1rem 0;
+        }
+
+        .timeline-element:nth-child(even) {
+            grid-column-start: 2;
+            grid-column-end: 2;
+            grid-row-start: var(--row-num);
+            grid-row-end: span 1;
+        }
+
+        .timeline-element:nth-child(odd) {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: var(--row-num);
+            grid-row-end: span 1;
+
+            .timeline-header {
+                display: grid;
+                grid-template-columns: 10% auto 10%;
+                grid-template-rows: 100%;
+
+                .timeline-date {
+                    grid-column-start: 3;
+                    grid-column-end: span 1;
+                    grid-row-start: 1;
+                    grid-row-end: span 1;
+                    margin-left: 1.38rem;
+                    transition: margin 0.5s ease;
+
+                    .is-115 & {
+                        margin-left: 2.1rem;
+                    }
+                }
+
+                .timeline-title {
+                    grid-column-start: 2;
+                    grid-column-end: span 1;
+                    grid-row-start: 1;
+                    grid-row-end: span 1;
+                    justify-self: end;
+                    text-align: right;
+                }
+            }
+
+            .timeline-description {
+                margin-left: 0;
+                margin-right: 1em;
+                text-align: right;
+
+                .timeline-subtitle {
+                    margin: 0 0 0 auto;
+                }
+            }
+            
+            .timeline-item .timeline-description {
+                justify-content: flex-end;
+            }
+        }
+    }
+
     .timeline {
         margin-left: 1em;
         margin-top: 1rem;
 
         .timeline-header, .timeline-group-header {
             display:flex;
+        }
+
+        .timeline-group {
+            padding-top:3em;
+            margin-left: 3rem;
+
+            background-image: linear-gradient($light-gray, 100%, white); // white is a dummy value
+            background-size:6px 100%;
+            background-position: 50%;
+            background-repeat:no-repeat;
+
+            &:first-child {
+                padding-top: 0;
+            }
+            &:last-child {
+                background-image: linear-gradient($light-gray, 90%, $body-bg);
+                padding-bottom: 5rem;
+            }
+
+            .timeline-group-icon {
+                height: 4.5rem;
+                width: 4.5rem;
+                padding: 0.45em 0;
+                margin-left: -1.22em;
+                color: $color0;
+                background-color: $color9;
+                font-size: 30px;
+            }
         }
 
         .timeline-title, .timeline-subtitle, .timeline-group-title {
@@ -87,50 +194,21 @@
             height: 3rem;
             width: 3rem;
             padding: 0.7em 0;
-            margin-left: -1.32em;
+            margin-left: -1.52em;
             color:$color9;
             background-color: $body-bg;
 
             border: 2px solid $color9;
         }
 
-        .timeline-group-icon {
-            height: 4.5rem;
-            width: 4.5rem;
-            padding: 0.45em 0;
-            margin-left: -1.15em;
-            color: $color0;
-            background-color: $color9;
-            font-size: 30px;
-        }
-
-        .timeline-group {
-            padding-top:3em;
-            margin-left: 3rem;
-
-            background-image: linear-gradient($light-gray, 100%, white); // white is a dummy value
-            background-size:6px 100%;
-            background-position:0 0, 100% 0;
-            background-repeat:no-repeat;
-
-            &:first-child {
-                padding-top: 0;
-            }
-            &:last-child {
-                background-image: linear-gradient($light-gray, 90%, $body-bg);
-            }
-        }
-
-        .timeline-item {
-            margin-top: 2em;
+        .timeline-element {
+            margin-top: 1rem;
         }
 
         .timeline-description {
             padding: 1em;
             margin-left: 1em;
             border:3px solid $color0;
-            // background: $color0;
-            // box-shadow: 1px 2px 2px #ccc;
             border-radius: 1em;
             font-weight: 200;
         }

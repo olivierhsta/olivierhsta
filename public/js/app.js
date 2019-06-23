@@ -554,11 +554,21 @@ var _data_skills_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__we
     };
   },
   methods: {
-    /*
-    method: function (event) {
-        // content
+    countEvents: function countEvents(group) {
+      var i = 0;
+
+      for (var event in group.events) {
+        i++;
+      }
+
+      return i;
     },
-    */
+    getRowNum: function getRowNum(index) {
+      return index + 2;
+    },
+    isEven: function isEven(num) {
+      return num % 2 === 0;
+    }
   }
 });
 
@@ -721,7 +731,22 @@ exports.push([module.i, ".circle {\n  height: 3.5rem;\n  width: 3.5rem;\n  posit
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".timeline {\n  margin-left: 1em;\n  margin-top: 1rem;\n}\n.timeline .timeline-header, .timeline .timeline-group-header {\n  display: flex;\n}\n.timeline .timeline-title, .timeline .timeline-subtitle, .timeline .timeline-group-title {\n  display: flex;\n  align-items: center;\n  /* Vertical center alignment */\n  color: #15aabf;\n  font-weight: bold;\n  margin-left: 0.5em;\n}\n.timeline .timeline-group-title {\n  font-size: 160%;\n}\n.timeline .timeline-subtitle {\n  color: #15aabf;\n  padding: 0 0.5em;\n  font-weight: 200;\n}\n.timeline .timeline-date, .timeline .timeline-group-icon {\n  display: inline-block;\n  font-weight: 200;\n  border-radius: 50%;\n  text-align: center;\n}\n.timeline .timeline-date {\n  height: 3rem;\n  width: 3rem;\n  padding: 0.7em 0;\n  margin-left: -1.32em;\n  color: #0b7285;\n  background-color: white;\n  border: 2px solid #0b7285;\n}\n.timeline .timeline-group-icon {\n  height: 4.5rem;\n  width: 4.5rem;\n  padding: 0.45em 0;\n  margin-left: -1.15em;\n  color: #e3fafc;\n  background-color: #0b7285;\n  font-size: 30px;\n}\n.timeline .timeline-group {\n  padding-top: 3em;\n  margin-left: 3rem;\n  background-image: linear-gradient(whitesmoke, 100%, white);\n  background-size: 6px 100%;\n  background-position: 0 0, 100% 0;\n  background-repeat: no-repeat;\n}\n.timeline .timeline-group:first-child {\n  padding-top: 0;\n}\n.timeline .timeline-group:last-child {\n  background-image: linear-gradient(whitesmoke, 90%, white);\n}\n.timeline .timeline-item {\n  margin-top: 2em;\n}\n.timeline .timeline-description {\n  padding: 1em;\n  margin-left: 1em;\n  border: 3px solid #e3fafc;\n  border-radius: 1em;\n  font-weight: 200;\n}", ""]);
+exports.push([module.i, ".timeline-group {\n  display: grid;\n  grid-template-columns: 50% 50%;\n  grid-template-rows: 5.5rem repeat(var(--number-rows), -webkit-max-content);\n  grid-template-rows: 5.5rem repeat(var(--number-rows), max-content);\n}\n.timeline-group .timeline-group-header {\n  grid-column-start: 2;\n  grid-column-end: 2;\n  grid-row-start: 1;\n  grid-row-end: span 1;\n  margin: 0 0 1rem 0;\n}\n.timeline-group .timeline-element:nth-child(even) {\n  grid-column-start: 2;\n  grid-column-end: 2;\n  grid-row-start: var(--row-num);\n  grid-row-end: span 1;\n}\n.timeline-group .timeline-element:nth-child(odd) {\n  grid-column-start: 1;\n  grid-column-end: 2;\n  grid-row-start: var(--row-num);\n  grid-row-end: span 1;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-header {\n  display: grid;\n  grid-template-columns: 10% auto 10%;\n  grid-template-rows: 100%;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-header .timeline-date {\n  grid-column-start: 3;\n  grid-column-end: span 1;\n  grid-row-start: 1;\n  grid-row-end: span 1;\n  margin-left: 1.38rem;\n  transition: margin 0.5s ease;\n}\n.is-115 .timeline-group .timeline-element:nth-child(odd) .timeline-header .timeline-date {\n  margin-left: 2.1rem;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-header .timeline-title {\n  grid-column-start: 2;\n  grid-column-end: span 1;\n  grid-row-start: 1;\n  grid-row-end: span 1;\n  justify-self: end;\n  text-align: right;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-description {\n  margin-left: 0;\n  margin-right: 1em;\n  text-align: right;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-description .timeline-subtitle {\n  margin: 0 0 0 auto;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-item .timeline-description {\n  justify-content: flex-end;\n}\n.timeline {\n  margin-left: 1em;\n  margin-top: 1rem;\n}\n.timeline .timeline-header, .timeline .timeline-group-header {\n  display: flex;\n}\n.timeline .timeline-group {\n  padding-top: 3em;\n  margin-left: 3rem;\n  background-image: linear-gradient(whitesmoke, 100%, white);\n  background-size: 6px 100%;\n  background-position: 50%;\n  background-repeat: no-repeat;\n}\n.timeline .timeline-group:first-child {\n  padding-top: 0;\n}\n.timeline .timeline-group:last-child {\n  background-image: linear-gradient(whitesmoke, 90%, white);\n  padding-bottom: 5rem;\n}\n.timeline .timeline-group .timeline-group-icon {\n  height: 4.5rem;\n  width: 4.5rem;\n  padding: 0.45em 0;\n  margin-left: -1.22em;\n  color: #e3fafc;\n  background-color: #0b7285;\n  font-size: 30px;\n}\n.timeline .timeline-title, .timeline .timeline-subtitle, .timeline .timeline-group-title {\n  display: flex;\n  align-items: center;\n  /* Vertical center alignment */\n  color: #15aabf;\n  font-weight: bold;\n  margin-left: 0.5em;\n}\n.timeline .timeline-group-title {\n  font-size: 160%;\n}\n.timeline .timeline-subtitle {\n  color: #15aabf;\n  padding: 0 0.5em;\n  font-weight: 200;\n}\n.timeline .timeline-date, .timeline .timeline-group-icon {\n  display: inline-block;\n  font-weight: 200;\n  border-radius: 50%;\n  text-align: center;\n}\n.timeline .timeline-date {\n  height: 3rem;\n  width: 3rem;\n  padding: 0.7em 0;\n  margin-left: -1.52em;\n  color: #0b7285;\n  background-color: white;\n  border: 2px solid #0b7285;\n}\n.timeline .timeline-element {\n  margin-top: 1rem;\n}\n.timeline .timeline-description {\n  padding: 1em;\n  margin-left: 1em;\n  border: 3px solid #e3fafc;\n  border-radius: 1em;\n  font-weight: 200;\n}", ""]);
+
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=scss&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=scss& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, ".timeline-item .timeline-description {\n  display: flex;\n  flex-flow: wrap;\n}\n.timeline-item .skill-icon {\n  margin-top: 1rem;\n}", ""]);
 
 
 
@@ -767,21 +792,6 @@ exports.push([module.i, "\n.modal-content{\n    background-color:white;\n}\n", "
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* css styling */\n", ""]);
-
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=css&":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=css& ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
-// Module
-exports.push([module.i, "\n.timeline-description {\r\n    display: flex;\r\n    flex-flow: wrap;\n}\n.skill-icon {\r\n    margin-top: 1rem;\n}\r\n", ""]);
 
 
 
@@ -1426,6 +1436,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=scss&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=scss& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./TimelineItem.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NoteCard.vue?vue&type=style&index=0&lang=css&":
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NoteCard.vue?vue&type=style&index=0&lang=css& ***!
@@ -1495,36 +1535,6 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./TimelineEvent.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TimelineEvent.vue?vue&type=style&index=0&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=css&":
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader/dist/cjs.js??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=css& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./TimelineItem.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -2633,7 +2643,10 @@ var render = function() {
       _vm._l(_vm.events, function(group) {
         return _c(
           "div",
-          { staticClass: "timeline-group" },
+          {
+            staticClass: "timeline-group",
+            style: "--number-rows:" + _vm.countEvents(group) + ";"
+          },
           [
             _c("div", { staticClass: "timeline-group-header" }, [
               _c("div", { staticClass: "timeline-group-icon" }, [
@@ -2645,10 +2658,13 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._l(group.events, function(event) {
+            _vm._l(group.events, function(event, index) {
               return _c(
                 "div",
-                { staticClass: "timeline-item" },
+                {
+                  staticClass: "timeline-element",
+                  style: "--row-num:" + _vm.getRowNum(index) + ";"
+                },
                 [_c("timeline-event", { attrs: { event: event } })],
                 1
               )
@@ -2664,10 +2680,13 @@ var render = function() {
         [
           _vm._m(0),
           _vm._v(" "),
-          _vm._l(_vm.skills, function(skillGroup) {
+          _vm._l(_vm.skills, function(skillGroup, index) {
             return _c(
               "div",
-              { staticClass: "timeline-item" },
+              {
+                staticClass: "timeline-element",
+                style: "--row-num:" + _vm.getRowNum(index) + ";"
+              },
               [_c("timeline-item", { attrs: { item: skillGroup } })],
               1
             )
@@ -2716,7 +2735,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "timeline-event" }, [
     _c("div", { staticClass: "timeline-header" }, [
       _c("div", { staticClass: "timeline-date" }, [
         _vm._v(_vm._s(this.event.startdate.year))
@@ -2757,7 +2776,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "timeline-item" }, [
     _c("div", { staticClass: "timeline-header" }, [
       _c("div", { staticClass: "timeline-date" }, [
         _c("i", { class: this.item.icon + " fa-lg" })
@@ -14028,7 +14047,7 @@ module.exports = g;
 /*! exports provided: 0, 1, default */
 /***/ (function(module) {
 
-module.exports = [{"title":"Work history","icon":{"fontawesome":"fas fa-suitcase"},"events":[{"title":"Full-stack developer","subtitle":"Integratik","startdate":{"year":"2018","month":"09","day":"1"},"enddate":{"year":"2018","month":"12","day":"21"},"description":"For the last few month of 2018 I worked at Integratik inc.  where I developed features for a web application used internally by a large medical company for managing their clients base."},{"title":"Full-stack developer Internship","subtitle":"Insum Solution","startdate":{"year":"2018","month":"06","day":"28"},"enddate":{"year":"2018","month":"08","day":"21"},"description":"During the summer of 2018, I had an internship at Insum Solution inc. where I followed a formation for Oracle APEX and PL/SQL before building small websites using those tools of Rapid Application Development."},{"title":"IT Specialist Internship","subtitle":"Civilia","startdate":{"year":"2018","month":"01","day":"15"},"enddate":{"year":"2018","month":"04","day":"21"},"description":"At the begining of 2018, I had my first internship at Civilia inc.  There, I built tools to analyse public transportation data and built a web application to give a simple user interface for clients to use the solutions offered by Civilia."}]},{"title":"Education history","icon":{"fontawesome":"fas fa-user-graduate"},"events":[{"title":"Bachelor in Computer Science","subtitle":"Université de Montréal","startdate":{"year":"2016","month":"09","day":"1"},"enddate":{"year":"2019","month":"12","day":"21"},"description":"From 2016 to 2019, I followed my bachelor where I learned about computer architecture, web developpement, software development, databases, theorical computer sciences and many other subjects."},{"title":"DEC en Sciences Informatique et Mathématique","subtitle":"Collège du Bois-de-Boulogne","startdate":{"year":"2014","month":"08","day":"25"},"enddate":{"year":"2016","month":"05","day":"21"},"description":"In 2016, I graduated from the Bois-de-Boulogne CEGEP with a DEC focused on mathematics and software developement."},{"title":"High school diploma","subtitle":"Collège Mont-Saint-Louis","startdate":{"year":"2009","month":"09","day":"01"},"enddate":{"year":"2014","month":"06","day":"23"},"description":"Optained my high school diploma with advanced mathematic and sciences classes."}]}];
+module.exports = [{"title":"Work history","icon":{"fontawesome":"fas fa-suitcase"},"events":[{"title":"Full-stack developer","subtitle":"Insum Solution","startdate":{"year":"Now","month":"","day":""},"enddate":{"year":"","month":"","day":""},"description":"I started working at Insum Solution inc. at the begining of the summer of 2019, where I built internal applications using Oracle APEX and PL/SQL as well as traditionnal front-end technologies (HTML, CSS, JavaScript/jQuery)."},{"title":"Full-stack developer","subtitle":"Integratik","startdate":{"year":"2018","month":"09","day":"1"},"enddate":{"year":"2018","month":"12","day":"21"},"description":"For the last few month of 2018 I worked at Integratik inc.  where I developed features for a web application used internally by a large medical company for managing their clients base."},{"title":"Full-stack developer Internship","subtitle":"Insum Solution","startdate":{"year":"2018","month":"06","day":"28"},"enddate":{"year":"2018","month":"08","day":"21"},"description":"During the summer of 2018, I had an internship at Insum Solution inc. where I followed a formation for Oracle APEX and PL/SQL before building small websites using those tools."},{"title":"IT Specialist Internship","subtitle":"Civilia","startdate":{"year":"2018","month":"01","day":"15"},"enddate":{"year":"2018","month":"04","day":"21"},"description":"At the begining of 2018, I had my first internship at Civilia inc.  There, I built tools to analyse public transportation data and built a web application to give a simple user interface for clients to use the solutions offered by Civilia."}]},{"title":"Education history","icon":{"fontawesome":"fas fa-user-graduate"},"events":[{"title":"Bachelor in Computer Science","subtitle":"Université de Montréal","startdate":{"year":"2016","month":"09","day":"1"},"enddate":{"year":"2019","month":"12","day":"21"},"description":"From 2016 to 2019, I followed my bachelor where I learned about computer architecture, web developpement, software development, databases, theorical computer sciences and many other subjects."},{"title":"DEC en Sciences Informatique et Mathématique","subtitle":"Collège du Bois-de-Boulogne","startdate":{"year":"2014","month":"08","day":"25"},"enddate":{"year":"2016","month":"05","day":"21"},"description":"In 2016, I graduated from the Bois-de-Boulogne CEGEP with a DEC focused on mathematics and software developement."},{"title":"High school diploma","subtitle":"Collège Mont-Saint-Louis","startdate":{"year":"2009","month":"09","day":"01"},"enddate":{"year":"2014","month":"06","day":"23"},"description":"Optained my high school diploma with advanced mathematic and sciences classes."}]}];
 
 /***/ }),
 
@@ -14050,7 +14069,7 @@ module.exports = {"name":"Olivier Hassaoui St-Amour"};
 /*! exports provided: 0, 1, 2, 3, default */
 /***/ (function(module) {
 
-module.exports = [{"title":"Backend","icon":"fas fa-server","skills":[{"name":"PHP","level":"90","icon":"fab fa-php","color":"#787CB5"},{"name":"Laravel","level":"70","icon":"fab fa-laravel","color":"#F05340"}]},{"title":"Database","icon":"fas fa-database","skills":[{"name":"MySQL","level":"80","icon":"icon-mysql","color":"#00758F"},{"name":"Oracle SQL","level":"70","icon":"icon-oracle","color":"#F80102"}]},{"title":"Frontend","icon":"fas fa-laptop-code","skills":[{"name":"HTML5","level":"100","icon":"fab fa-html5","color":"#F16529"},{"name":"CSS3","level":"90","icon":"fab fa-css3","color":"#3C99DC"},{"name":"Sass","level":"70","icon":"icon-sass","color":"#CD6799"},{"name":"JavaScript","level":"80","icon":"fab fa-js","color":"#323330"},{"name":"Vue.js","level":"80","icon":"fab fa-vuejs","color":"#41B883"},{"name":"jQuery","level":"80","icon":"icon-jquery","color":"#0868AC"},{"name":"Bootstrap","level":"90","icon":"icon-bootstrap","color":"#553C7B   "}]},{"title":"Other","icon":"fas fa-keyboard","skills":[{"name":"Java","level":"90","icon":"fab fa-java","color":"#ED1D25"},{"name":"Python","level":"60","icon":"fab fa-python","color":"#306998"},{"name":"Git","level":"70","icon":"icon-git","color":"#F1502F"},{"name":"LaTeX","level":"100","icon":"fas fa-align-left","color":"#000000"}]}];
+module.exports = [{"title":"Backend","icon":"fas fa-server","skills":[{"name":"PHP","level":"90","icon":"fab fa-php","color":"#787CB5"},{"name":"Laravel","level":"70","icon":"fab fa-laravel","color":"#F05340"},{"name":"APEX","level":"70","icon":"fas fa-pencil-ruler","color":"#f29111"}]},{"title":"Database","icon":"fas fa-database","skills":[{"name":"MySQL","level":"80","icon":"icon-mysql","color":"#00758F"},{"name":"Oracle SQL","level":"70","icon":"icon-oracle","color":"#F80102"},{"name":"PL/SQL","level":"70","icon":"icon-plsql","color":"#000000"}]},{"title":"Frontend","icon":"fas fa-laptop-code","skills":[{"name":"HTML5","level":"100","icon":"fab fa-html5","color":"#F16529"},{"name":"CSS3","level":"90","icon":"fab fa-css3","color":"#3C99DC"},{"name":"Sass","level":"70","icon":"icon-sass","color":"#CD6799"},{"name":"JavaScript","level":"80","icon":"fab fa-js","color":"#323330"},{"name":"Vue.js","level":"80","icon":"fab fa-vuejs","color":"#41B883"},{"name":"jQuery","level":"80","icon":"icon-jquery","color":"#0868AC"},{"name":"Bootstrap","level":"90","icon":"icon-bootstrap","color":"#553C7B   "}]},{"title":"Other","icon":"fas fa-keyboard","skills":[{"name":"Java","level":"70","icon":"fab fa-java","color":"#ED1D25"},{"name":"Python","level":"60","icon":"fab fa-python","color":"#306998"},{"name":"Git","level":"70","icon":"icon-git","color":"#F1502F"},{"name":"LaTeX","level":"100","icon":"icon-tex","color":"#000000"}]}];
 
 /***/ }),
 
@@ -14886,7 +14905,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TimelineItem_vue_vue_type_template_id_5b4ad642___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TimelineItem.vue?vue&type=template&id=5b4ad642& */ "./resources/js/components/TimelineItem.vue?vue&type=template&id=5b4ad642&");
 /* harmony import */ var _TimelineItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TimelineItem.vue?vue&type=script&lang=js& */ "./resources/js/components/TimelineItem.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _TimelineItem_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TimelineItem.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _TimelineItem_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TimelineItem.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=scss&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -14928,19 +14947,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=css&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=css& ***!
-  \***********************************************************************************/
+/***/ "./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=scss&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=scss& ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TimelineItem_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./TimelineItem.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TimelineItem_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TimelineItem_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TimelineItem_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TimelineItem_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TimelineItem_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TimelineItem_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./TimelineItem.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TimelineItem.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TimelineItem_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TimelineItem_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TimelineItem_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TimelineItem_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TimelineItem_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
