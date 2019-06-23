@@ -72,11 +72,34 @@
             margin: 0 0 1rem 0;
         }
 
+        .timeline-header {
+            display: grid;
+            grid-template-columns: 3rem auto 3rem;
+            grid-template-rows: 100%;
+        }
+
         .timeline-element:nth-child(even) {
             grid-column-start: 2;
             grid-column-end: 2;
             grid-row-start: var(--row-num);
             grid-row-end: span 1;
+
+            .timeline-header {
+                .timeline-date {
+                    grid-column-start: 1;
+                    grid-column-end: span 1;
+                    grid-row-start: 1;
+                    grid-row-end: span 1;
+                    transition: margin 0.5s ease;
+                }
+
+                .timeline-title {
+                    grid-column-start: 2;
+                    grid-column-end: span 1;
+                    grid-row-start: 1;
+                    grid-row-end: span 1;
+                }
+            }
         }
 
         .timeline-element:nth-child(odd) {
@@ -86,9 +109,6 @@
             grid-row-end: span 1;
 
             .timeline-header {
-                display: grid;
-                grid-template-columns: 10% auto 10%;
-                grid-template-rows: 100%;
 
                 .timeline-date {
                     grid-column-start: 3;
@@ -97,10 +117,6 @@
                     grid-row-end: span 1;
                     margin-left: 1.38rem;
                     transition: margin 0.5s ease;
-
-                    .is-115 & {
-                        margin-left: 2.1rem;
-                    }
                 }
 
                 .timeline-title {
@@ -122,7 +138,7 @@
                     margin: 0 0 0 auto;
                 }
             }
-            
+
             .timeline-item .timeline-description {
                 justify-content: flex-end;
             }
@@ -133,7 +149,7 @@
         margin-left: 1em;
         margin-top: 1rem;
 
-        .timeline-header, .timeline-group-header {
+        .timeline-group-header {
             display:flex;
         }
 
@@ -157,7 +173,7 @@
             .timeline-group-icon {
                 height: 4.5rem;
                 width: 4.5rem;
-                padding: 0.45em 0;
+                padding: 0.45em 0.7em;
                 margin-left: -1.22em;
                 color: $color0;
                 background-color: $color9;
@@ -211,6 +227,59 @@
             border:3px solid $color0;
             border-radius: 1em;
             font-weight: 200;
+        }
+    }
+
+    @media (max-width:$mobile-lg) {
+        .timeline-group {
+
+            .timeline-group-header {
+                grid-column-start: 1;
+                grid-column-end: span 2;
+                grid-row-start: 1;
+                grid-row-end: span 1;
+                margin: 0 0 1rem 0;
+            }
+
+            .timeline-header {
+                .timeline-date {
+                    grid-column-start: 1 !important;
+                    grid-column-end: span 1 !important;
+                    grid-row-start: 1 !important;
+                    grid-row-end: span 1 !important;
+                }
+
+                .timeline-title {
+                    grid-column-start: 2 !important;
+                    grid-column-end: span 1 !important;
+                    grid-row-start: 1 !important;
+                    grid-row-end: span 1 !important;
+                }
+            }
+
+            .timeline-element:nth-child(even) {
+                grid-column-start: 1;
+                grid-column-end: span 2;
+                grid-row-start: var(--row-num);
+                grid-row-end: span 1;
+            }
+
+            .timeline-element:nth-child(odd) {
+                grid-column-start: 1;
+                grid-column-end: span 2;
+                grid-row-start: var(--row-num);
+                grid-row-end: span 1;
+
+                .timeline-description {
+                    margin-left: 0;
+                    margin-right: 0;
+                    text-align: left !important;
+
+                    .timeline-subtitle {
+                        margin: 0;
+                    }
+                }
+            }
         }
     }
 </style>

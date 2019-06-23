@@ -30,7 +30,7 @@
             return  {
                 sidebarIsClosed:false,
                 windowWidth: window.innerWidth,
-                desktopSidebarState: false
+                desktopSidebarState: false // to remember the state on resize
             };
         },
         computed: {

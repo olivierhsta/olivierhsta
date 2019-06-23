@@ -132,5 +132,11 @@ span.contrast {
 
 h1.ohs-title {
     font-variation-settings: 'wght' 1000;
-    font-size:4vw;
+    font-size:4rem;
+
+    @media (max-width: $tablet) {
+        & {
+            font-size: 3rem;
+        }
+    }
 }

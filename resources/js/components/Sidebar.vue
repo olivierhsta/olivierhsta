@@ -82,12 +82,11 @@
         padding-right: 2%;
         // background: linear-gradient(to right,$color9,80%,$color7);
         background: linear-gradient(to right,$color7,20%,$color9);
-        transition: all 0.5s ease;
 
         &::after {
             content: "";
-            // background: url(/img/background.jpg) bottom center;
-            opacity: 0.1;
+            background: url(/img/blue-mountain.jpg) center;
+            opacity: 0.2;
             top: 0;
             left: 0;
             bottom: 0;
