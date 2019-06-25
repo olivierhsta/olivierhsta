@@ -33,6 +33,11 @@
                 desktopSidebarState: false // to remember the state on resize
             };
         },
+        created: function() {
+            if (this.windowWidth < 935) {
+                this.sidebarIsClosed = true;
+            }
+        },
         computed: {
             contentClasses() {
                 if (this.windowWidth < 935) {

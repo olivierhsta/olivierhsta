@@ -184,6 +184,7 @@
 
                 & .profile-pic-container {
                     margin: auto;
+                    width: 8rem;
 
                     #profile-pic img {
                         width: auto;

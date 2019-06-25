@@ -58,93 +58,6 @@
 <style lang="scss">
     @import "@/_variables.scss";
 
-    // grid layout
-    .timeline-group {
-        display: grid;
-        grid-template-columns: 50% 50%;
-        grid-template-rows: 5.5rem repeat(var(--number-rows), max-content);
-
-        .timeline-group-header {
-            grid-column-start: 2;
-            grid-column-end: 2;
-            grid-row-start: 1;
-            grid-row-end: span 1;
-            margin: 0 0 1rem 0;
-        }
-
-        .timeline-header {
-            display: grid;
-            grid-template-columns: 3rem auto 3rem;
-            grid-template-rows: 100%;
-        }
-
-        .timeline-element:nth-child(even) {
-            grid-column-start: 2;
-            grid-column-end: 2;
-            grid-row-start: var(--row-num);
-            grid-row-end: span 1;
-
-            .timeline-header {
-                .timeline-date {
-                    grid-column-start: 1;
-                    grid-column-end: span 1;
-                    grid-row-start: 1;
-                    grid-row-end: span 1;
-                    transition: margin 0.5s ease;
-                }
-
-                .timeline-title {
-                    grid-column-start: 2;
-                    grid-column-end: span 1;
-                    grid-row-start: 1;
-                    grid-row-end: span 1;
-                }
-            }
-        }
-
-        .timeline-element:nth-child(odd) {
-            grid-column-start: 1;
-            grid-column-end: 2;
-            grid-row-start: var(--row-num);
-            grid-row-end: span 1;
-
-            .timeline-header {
-
-                .timeline-date {
-                    grid-column-start: 3;
-                    grid-column-end: span 1;
-                    grid-row-start: 1;
-                    grid-row-end: span 1;
-                    margin-left: 1.38rem;
-                    transition: margin 0.5s ease;
-                }
-
-                .timeline-title {
-                    grid-column-start: 2;
-                    grid-column-end: span 1;
-                    grid-row-start: 1;
-                    grid-row-end: span 1;
-                    justify-self: end;
-                    text-align: right;
-                }
-            }
-
-            .timeline-description {
-                margin-left: 0;
-                margin-right: 1em;
-                text-align: right;
-
-                .timeline-subtitle {
-                    margin: 0 0 0 auto;
-                }
-            }
-
-            .timeline-item .timeline-description {
-                justify-content: flex-end;
-            }
-        }
-    }
-
     .timeline {
         margin-left: 1em;
         margin-top: 1rem;
@@ -159,7 +72,6 @@
 
             background-image: linear-gradient($light-gray, 100%, white); // white is a dummy value
             background-size:6px 100%;
-            background-position: 50%;
             background-repeat:no-repeat;
 
             &:first-child {
@@ -174,7 +86,6 @@
                 height: 4.5rem;
                 width: 4.5rem;
                 padding: 0.45em 0.7em;
-                margin-left: -1.22em;
                 color: $color0;
                 background-color: $color9;
                 font-size: 30px;
@@ -210,7 +121,6 @@
             height: 3rem;
             width: 3rem;
             padding: 0.7em 0;
-            margin-left: -1.52em;
             color:$color9;
             background-color: $body-bg;
 
@@ -230,53 +140,153 @@
         }
     }
 
-    @media (max-width:$mobile-lg) {
+    .timeline-group {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 5.5rem repeat(var(--number-rows), max-content);
+    }
+
+    .timeline-header {
+        display: grid;
+        grid-template-columns: 3rem auto 3rem;
+        grid-template-rows: 100%;
+    }
+
+    .fas.fa-code {
+        margin-left: -0.2rem;
+    }
+
+    @media (min-width:$tablet) {
+
+        .timeline-date {
+            margin-left: -1.52em;
+        }
+
+        .timeline-group-icon {
+            margin-left: -1.22em;
+        }
+
         .timeline-group {
+            background-position: 50%;
 
             .timeline-group-header {
-                grid-column-start: 1;
-                grid-column-end: span 2;
+                grid-column-start: 2;
+                grid-column-end: 2;
                 grid-row-start: 1;
                 grid-row-end: span 1;
                 margin: 0 0 1rem 0;
             }
 
-            .timeline-header {
-                .timeline-date {
-                    grid-column-start: 1 !important;
-                    grid-column-end: span 1 !important;
-                    grid-row-start: 1 !important;
-                    grid-row-end: span 1 !important;
-                }
-
-                .timeline-title {
-                    grid-column-start: 2 !important;
-                    grid-column-end: span 1 !important;
-                    grid-row-start: 1 !important;
-                    grid-row-end: span 1 !important;
-                }
-            }
-
             .timeline-element:nth-child(even) {
-                grid-column-start: 1;
-                grid-column-end: span 2;
+                grid-column-start: 2;
+                grid-column-end: 2;
                 grid-row-start: var(--row-num);
                 grid-row-end: span 1;
+
+                .timeline-header {
+                    .timeline-date {
+                        grid-column-start: 1;
+                        grid-column-end: span 1;
+                        grid-row-start: 1;
+                        grid-row-end: span 1;
+                        transition: margin 0.5s ease;
+                    }
+
+                    .timeline-title {
+                        grid-column-start: 2;
+                        grid-column-end: span 1;
+                        grid-row-start: 1;
+                        grid-row-end: span 1;
+                    }
+                }
             }
 
             .timeline-element:nth-child(odd) {
                 grid-column-start: 1;
+                grid-column-end: 2;
+                grid-row-start: var(--row-num);
+                grid-row-end: span 1;
+
+                .timeline-header {
+
+                    .timeline-date {
+                        grid-column-start: 3;
+                        grid-column-end: span 1;
+                        grid-row-start: 1;
+                        grid-row-end: span 1;
+                        margin-left: 1.38rem;
+                        transition: margin 0.5s ease;
+                    }
+
+                    .timeline-title {
+                        grid-column-start: 2;
+                        grid-column-end: span 1;
+                        grid-row-start: 1;
+                        grid-row-end: span 1;
+                        justify-self: end;
+                        text-align: right;
+                    }
+                }
+
+                .timeline-description {
+                    margin-left: 0;
+                    margin-right: 1em;
+                    text-align: right;
+
+                    .timeline-subtitle {
+                        margin: 0 0 0 auto;
+                    }
+                }
+
+                .timeline-item .timeline-description {
+                    justify-content: flex-end;
+                }
+            }
+        }
+    }
+
+    @media (max-width:$tablet) {
+
+        .timeline-date {
+            margin-left: -1.3em;
+        }
+
+        .timeline-group-icon {
+            margin-left:-1.12em;
+        }
+
+        .timeline-group {
+            background-position: 0;
+            margin-right: 10%;
+
+            .timeline-group-header {
+                grid-column-start: 1;
+                grid-column-end: span 1;
+                grid-row-start: 1;
+                grid-row-end: span 1;
+                margin: 0 0 1rem 0;
+            }
+
+            .timeline-element {
+                grid-column-start: 1;
                 grid-column-end: span 2;
                 grid-row-start: var(--row-num);
                 grid-row-end: span 1;
 
-                .timeline-description {
-                    margin-left: 0;
-                    margin-right: 0;
-                    text-align: left !important;
+                .timeline-header {
+                    .timeline-date {
+                        grid-column-start: 1;
+                        grid-column-end: span 1;
+                        grid-row-start: 1;
+                        grid-row-end: span 1;
+                        transition: margin 0.5s ease;
+                    }
 
-                    .timeline-subtitle {
-                        margin: 0;
+                    .timeline-title {
+                        grid-column-start: 2;
+                        grid-column-end: span 1;
+                        grid-row-start: 1;
+                        grid-row-end: span 1;
                     }
                 }
             }
