@@ -1,2 +1,2 @@
-# til
-Personal website to store code snippets and other useful information
+# olivierhsta
+Personal website build with Laravel and Vue.js
