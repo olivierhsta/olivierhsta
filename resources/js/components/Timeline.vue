@@ -137,6 +137,8 @@
             border:3px solid $color0;
             border-radius: 1em;
             font-weight: 200;
+            width: max-content;
+            max-width: 90%;
         }
     }
 
@@ -229,7 +231,7 @@
                 }
 
                 .timeline-description {
-                    margin-left: 0;
+                    margin-left: auto;
                     margin-right: 1em;
                     text-align: right;
 
