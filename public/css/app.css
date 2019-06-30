@@ -17514,6 +17514,35 @@ body {
   padding-left: 8rem !important;
 }
 
+@-webkit-keyframes fadeInFromDown {
+  from {
+    opacity: 0;
+    padding-top: 10%;
+  }
+
+  to {
+    opacity: 1;
+    padding-top: 0;
+  }
+}
+
+@keyframes fadeInFromDown {
+  from {
+    opacity: 0;
+    padding-top: 10%;
+  }
+
+  to {
+    opacity: 1;
+    padding-top: 0;
+  }
+}
+
+.fade-in-from-down {
+  -webkit-animation: fadeInFromDown 0.5s both ease-in;
+          animation: fadeInFromDown 0.5s both ease-in;
+}
+
 html,
 body,
 .full-page {

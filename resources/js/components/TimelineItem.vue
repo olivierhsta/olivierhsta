@@ -14,7 +14,6 @@
                     :skillLevel="skill.level"
                     :color="skill.color"
                     :icon="skill.icon">
-                    <!-- {{skill.name}} -->
                 </skill-icon>
             </div>
         </div>
@@ -44,6 +43,7 @@
     .timeline-description {
         display: flex;
         flex-flow: wrap;
+        margin-top: 0.5rem;
     }
 
     .skill-icon {

@@ -18,4 +18,4 @@ mix.js('resources/js/app.js', 'public/js')
             '@': path.resolve('resources/sass')
         }
     }
-    }).sass('resources/sass/app.scss', 'public/css');
+}).sass('resources/sass/app.sass', 'public/css');

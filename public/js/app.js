@@ -556,10 +556,22 @@ var _data_skills_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__we
   data: function data() {
     return {
       events: _data_events_json__WEBPACK_IMPORTED_MODULE_0__,
-      skills: _data_skills_json__WEBPACK_IMPORTED_MODULE_1__
+      skills: _data_skills_json__WEBPACK_IMPORTED_MODULE_1__,
+      showElementAt: window.innerHeight - window.innerHeight / 7
     };
   },
   methods: {
+    showTimelineElements: function showTimelineElements() {
+      var _this = this;
+
+      Array.from(document.getElementsByClassName("timeline-element")).forEach(function (el) {
+        console.log(el);
+
+        if (el.getBoundingClientRect().top < _this.showElementAt) {
+          el.classList.add('fade-in-from-down');
+        }
+      });
+    },
     countEvents: function countEvents(group) {
       var i = 0;
 
@@ -575,6 +587,13 @@ var _data_skills_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__we
     isEven: function isEven(num) {
       return num % 2 === 0;
     }
+  },
+  created: function created() {
+    window.addEventListener('load', this.showTimelineElements);
+    window.addEventListener('scroll', this.showTimelineElements);
+  },
+  beforeDestroy: function beforeDestroy() {
+    window.removeEventListener('scroll', this.showTimelineElements);
   }
 });
 
@@ -628,7 +647,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -737,7 +755,7 @@ exports.push([module.i, ".circle {\n  height: 3.5rem;\n  width: 3.5rem;\n  posit
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".timeline {\n  margin-left: 1em;\n  margin-top: 1rem;\n}\n.timeline .timeline-group-header {\n  display: flex;\n}\n.timeline .timeline-group {\n  padding-top: 3em;\n  margin-left: 3rem;\n  background-image: linear-gradient(whitesmoke, 100%, white);\n  background-size: 6px 100%;\n  background-repeat: no-repeat;\n}\n.timeline .timeline-group:first-child {\n  padding-top: 0;\n}\n.timeline .timeline-group:last-child {\n  background-image: linear-gradient(whitesmoke, 90%, white);\n  padding-bottom: 5rem;\n}\n.timeline .timeline-group .timeline-group-icon {\n  height: 4.5rem;\n  width: 4.5rem;\n  padding: 0.45em 0.7em;\n  color: #e3fafc;\n  background-color: #0b7285;\n  font-size: 30px;\n}\n.timeline .timeline-title, .timeline .timeline-subtitle, .timeline .timeline-group-title {\n  display: flex;\n  align-items: center;\n  /* Vertical center alignment */\n  color: #15aabf;\n  font-weight: bold;\n  margin-left: 0.5em;\n}\n.timeline .timeline-group-title {\n  font-size: 160%;\n}\n.timeline .timeline-subtitle {\n  color: #15aabf;\n  padding: 0 0.5em;\n  font-weight: 200;\n}\n.timeline .timeline-date, .timeline .timeline-group-icon {\n  display: inline-block;\n  font-weight: 200;\n  border-radius: 50%;\n  text-align: center;\n}\n.timeline .timeline-date {\n  height: 3rem;\n  width: 3rem;\n  padding: 0.7em 0;\n  color: #0b7285;\n  background-color: white;\n  border: 2px solid #0b7285;\n}\n.timeline .timeline-element {\n  margin-top: 1rem;\n}\n.timeline .timeline-description {\n  padding: 1em;\n  margin-left: 1em;\n  border: 3px solid #e3fafc;\n  border-radius: 1em;\n  font-weight: 200;\n}\n.timeline-group {\n  display: grid;\n  grid-template-columns: 50% 50%;\n  grid-template-rows: 5.5rem repeat(var(--number-rows), -webkit-max-content);\n  grid-template-rows: 5.5rem repeat(var(--number-rows), max-content);\n}\n.timeline-header {\n  display: grid;\n  grid-template-columns: 3rem auto 3rem;\n  grid-template-rows: 100%;\n}\n.fas.fa-code {\n  margin-left: -0.2rem;\n}\n@media (min-width: 768px) {\n.timeline-date {\n    margin-left: -1.52em;\n}\n.timeline-group-icon {\n    margin-left: -1.22em;\n}\n.timeline-group {\n    background-position: 50%;\n}\n.timeline-group .timeline-group-header {\n    grid-column-start: 2;\n    grid-column-end: 2;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n    margin: 0 0 1rem 0;\n}\n.timeline-group .timeline-element:nth-child(even) {\n    grid-column-start: 2;\n    grid-column-end: 2;\n    grid-row-start: var(--row-num);\n    grid-row-end: span 1;\n}\n.timeline-group .timeline-element:nth-child(even) .timeline-header .timeline-date {\n    grid-column-start: 1;\n    grid-column-end: span 1;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n    transition: margin 0.5s ease;\n}\n.timeline-group .timeline-element:nth-child(even) .timeline-header .timeline-title {\n    grid-column-start: 2;\n    grid-column-end: span 1;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n}\n.timeline-group .timeline-element:nth-child(odd) {\n    grid-column-start: 1;\n    grid-column-end: 2;\n    grid-row-start: var(--row-num);\n    grid-row-end: span 1;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-header .timeline-date {\n    grid-column-start: 3;\n    grid-column-end: span 1;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n    margin-left: 1.38rem;\n    transition: margin 0.5s ease;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-header .timeline-title {\n    grid-column-start: 2;\n    grid-column-end: span 1;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n    justify-self: end;\n    text-align: right;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-description {\n    margin-left: 0;\n    margin-right: 1em;\n    text-align: right;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-description .timeline-subtitle {\n    margin: 0 0 0 auto;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-item .timeline-description {\n    justify-content: flex-end;\n}\n}\n@media (max-width: 768px) {\n.timeline-date {\n    margin-left: -1.3em;\n}\n.timeline-group-icon {\n    margin-left: -1.12em;\n}\n.timeline-group {\n    background-position: 0;\n    margin-right: 10%;\n}\n.timeline-group .timeline-group-header {\n    grid-column-start: 1;\n    grid-column-end: span 1;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n    margin: 0 0 1rem 0;\n}\n.timeline-group .timeline-element {\n    grid-column-start: 1;\n    grid-column-end: span 2;\n    grid-row-start: var(--row-num);\n    grid-row-end: span 1;\n}\n.timeline-group .timeline-element .timeline-header .timeline-date {\n    grid-column-start: 1;\n    grid-column-end: span 1;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n    transition: margin 0.5s ease;\n}\n.timeline-group .timeline-element .timeline-header .timeline-title {\n    grid-column-start: 2;\n    grid-column-end: span 1;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n}\n}", ""]);
+exports.push([module.i, ".timeline {\n  margin-left: 1em;\n  margin-top: 1rem;\n}\n.timeline .timeline-group-header {\n  display: flex;\n}\n.timeline .timeline-group {\n  padding-top: 3em;\n  margin-left: 3rem;\n  background-image: linear-gradient(whitesmoke, 100%, white);\n  background-size: 6px 100%;\n  background-repeat: no-repeat;\n}\n.timeline .timeline-group:first-child {\n  padding-top: 0;\n}\n.timeline .timeline-group:last-child {\n  background-image: linear-gradient(whitesmoke, 90%, white);\n  padding-bottom: 5rem;\n}\n.timeline .timeline-group .timeline-group-icon {\n  height: 4.5rem;\n  width: 4.5rem;\n  padding: 0.45em 0.7em;\n  color: #e3fafc;\n  background-color: #0b7285;\n  font-size: 30px;\n}\n.timeline .timeline-title, .timeline .timeline-subtitle, .timeline .timeline-group-title {\n  display: flex;\n  align-items: center;\n  /* Vertical center alignment */\n  color: #15aabf;\n  font-weight: bold;\n  margin-left: 0.5em;\n}\n.timeline .timeline-group-title {\n  font-size: 160%;\n}\n.timeline .timeline-subtitle {\n  color: #15aabf;\n  padding: 0 0.5em;\n  font-weight: 200;\n}\n.timeline .timeline-date, .timeline .timeline-group-icon {\n  display: inline-block;\n  font-weight: 200;\n  text-align: center;\n}\n.timeline .timeline-group-icon {\n  border-radius: 50%;\n}\n.timeline .timeline-date {\n  height: 3rem;\n  width: 3rem;\n  padding: 0.7em 0;\n  color: #0b7285;\n  background-color: white;\n  border-radius: 50% 50% 0 50%;\n  border: 2px solid #0b7285;\n}\n.timeline .timeline-element {\n  margin-top: 1rem;\n  opacity: 0;\n  padding-top: 10%;\n}\n.timeline .timeline-description {\n  padding: 1em;\n  margin-left: 2rem;\n  border: 3px solid #e3fafc;\n  border-radius: 0 1em 1em 1em;\n  font-weight: 200;\n  width: -webkit-max-content;\n  width: -moz-max-content;\n  width: max-content;\n  max-width: 90%;\n}\n.timeline-group {\n  display: grid;\n  grid-template-columns: 50% 50%;\n  grid-template-rows: 5.5rem repeat(var(--number-rows), -webkit-max-content);\n  grid-template-rows: 5.5rem repeat(var(--number-rows), max-content);\n}\n.timeline-header {\n  display: grid;\n  grid-template-columns: 3rem auto 3rem;\n  grid-template-rows: 100%;\n}\n.fas.fa-code {\n  margin-left: -0.2rem;\n}\n@media (min-width: 768px) {\n.timeline-date {\n    margin-left: -1.52em;\n}\n.timeline-group-icon {\n    margin-left: -1.22em;\n}\n.timeline-group {\n    background-position: 50%;\n}\n.timeline-group .timeline-group-header {\n    grid-column-start: 2;\n    grid-column-end: 2;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n    margin: 0 0 1rem 0;\n}\n.timeline-group .timeline-element:nth-child(even) {\n    grid-column-start: 2;\n    grid-column-end: 2;\n    grid-row-start: var(--row-num);\n    grid-row-end: span 1;\n}\n.timeline-group .timeline-element:nth-child(even) .timeline-header .timeline-date {\n    grid-column-start: 1;\n    grid-column-end: span 1;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n    transition: margin 0.5s ease;\n}\n.timeline-group .timeline-element:nth-child(even) .timeline-header .timeline-title {\n    grid-column-start: 2;\n    grid-column-end: span 1;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n}\n.timeline-group .timeline-element:nth-child(odd) {\n    grid-column-start: 1;\n    grid-column-end: 2;\n    grid-row-start: var(--row-num);\n    grid-row-end: span 1;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-header .timeline-date {\n    grid-column-start: 3;\n    grid-column-end: span 1;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n    margin-left: 1.38rem;\n    transition: margin 0.5s ease;\n    border-radius: 50% 50% 50% 0;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-header .timeline-title {\n    grid-column-start: 2;\n    grid-column-end: span 1;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n    justify-self: end;\n    text-align: right;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-description {\n    margin-left: 0;\n    margin-right: 2rem;\n    margin-left: auto;\n    text-align: right;\n    border-radius: 1em 0 1em 1em;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-description .timeline-subtitle {\n    margin: 0 0 0 auto;\n}\n.timeline-group .timeline-element:nth-child(odd) .timeline-item .timeline-description {\n    justify-content: flex-end;\n}\n}\n@media (max-width: 768px) {\n.timeline-date {\n    margin-left: -1.3em;\n}\n.timeline-group-icon {\n    margin-left: -1.12em;\n}\n.timeline-group {\n    background-position: 0;\n    margin-right: 10%;\n}\n.timeline-group .timeline-group-header {\n    grid-column-start: 1;\n    grid-column-end: span 1;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n    margin: 0 0 1rem 0;\n}\n.timeline-group .timeline-element {\n    grid-column-start: 1;\n    grid-column-end: span 2;\n    grid-row-start: var(--row-num);\n    grid-row-end: span 1;\n}\n.timeline-group .timeline-element .timeline-header .timeline-date {\n    grid-column-start: 1;\n    grid-column-end: span 1;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n    transition: margin 0.5s ease;\n}\n.timeline-group .timeline-element .timeline-header .timeline-title {\n    grid-column-start: 2;\n    grid-column-end: span 1;\n    grid-row-start: 1;\n    grid-row-end: span 1;\n}\n}", ""]);
 
 
 
@@ -752,7 +770,7 @@ exports.push([module.i, ".timeline {\n  margin-left: 1em;\n  margin-top: 1rem;\n
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".timeline-item .timeline-description {\n  display: flex;\n  flex-flow: wrap;\n}\n.timeline-item .skill-icon {\n  margin-top: 1rem;\n}", ""]);
+exports.push([module.i, ".timeline-item .timeline-description {\n  display: flex;\n  flex-flow: wrap;\n  margin-top: 0.5rem;\n}\n.timeline-item .skill-icon {\n  margin-top: 1rem;\n}", ""]);
 
 
 
@@ -14987,9 +15005,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
+/***/ "./resources/sass/app.sass":
 /*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
+  !*** ./resources/sass/app.sass ***!
   \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -15000,13 +15018,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ 0:
 /*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
+  !*** multi ./resources/js/app.js ./resources/sass/app.sass ***!
   \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\olivi\xampp\htdocs\olivierhsta\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\olivi\xampp\htdocs\olivierhsta\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\olivi\xampp\htdocs\olivierhsta\resources\sass\app.sass */"./resources/sass/app.sass");
 
 
 /***/ })

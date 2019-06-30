@@ -35,22 +35,38 @@
             return  {
                 events:eventsData,
                 skills:skillsData,
+                showElementAt: window.innerHeight - window.innerHeight/7
             };
         },
         methods: {
-            countEvents : function (group) {
+            showTimelineElements : function() {
+                Array.from(document.getElementsByClassName("timeline-element")).forEach( (el) => {
+                    console.log(el);
+                    if (el.getBoundingClientRect().top < this.showElementAt) {
+                        el.classList.add('fade-in-from-down');
+                    }
+                });
+            },
+            countEvents : (group) => {
                 let i = 0;
                 for (let event in group.events) {
                     i++;
                 }
                 return i;
             },
-            getRowNum : function(index) {
+            getRowNum : (index) => {
                 return index + 2;
             },
-            isEven : function (num) {
+            isEven : (num) => {
                 return num % 2 === 0;
             }
+        },
+        created: function() {
+            window.addEventListener('load', this.showTimelineElements);
+            window.addEventListener('scroll', this.showTimelineElements);
+        },
+        beforeDestroy: function () {
+            window.removeEventListener('scroll', this.showTimelineElements);
         }
     }
 </script>
@@ -113,8 +129,11 @@
         .timeline-date, .timeline-group-icon {
             display: inline-block;
             font-weight: 200;
-            border-radius: 50%;
             text-align: center;
+        }
+
+        .timeline-group-icon {
+            border-radius: 50%;
         }
 
         .timeline-date {
@@ -123,20 +142,24 @@
             padding: 0.7em 0;
             color:$color9;
             background-color: $body-bg;
-
+            border-radius: 50% 50% 0 50%;
             border: 2px solid $color9;
         }
 
         .timeline-element {
             margin-top: 1rem;
+            opacity: 0;
+            padding-top: 10%;
         }
 
         .timeline-description {
             padding: 1em;
-            margin-left: 1em;
+            margin-left: 2rem;
             border:3px solid $color0;
-            border-radius: 1em;
+            border-radius: 0 1em 1em 1em;
             font-weight: 200;
+            width: max-content;
+            max-width: 90%;
         }
     }
 
@@ -216,6 +239,7 @@
                         grid-row-end: span 1;
                         margin-left: 1.38rem;
                         transition: margin 0.5s ease;
+                        border-radius: 50% 50% 50% 0;
                     }
 
                     .timeline-title {
@@ -230,8 +254,10 @@
 
                 .timeline-description {
                     margin-left: 0;
-                    margin-right: 1em;
+                    margin-right: 2rem;
+                    margin-left: auto;
                     text-align: right;
+                    border-radius: 1em 0 1em 1em;
 
                     .timeline-subtitle {
                         margin: 0 0 0 auto;
