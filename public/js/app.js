@@ -311,12 +311,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['title', 'subtitle'],
   data: function data() {
     return {
       sidebarIsClosed: false,
-      windowWidth: window.innerWidth
+      windowWidth: window.innerWidth,
+      currentLang: "fr"
     };
   },
   created: function created() {
@@ -340,7 +346,15 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  methods: {}
+  methods: {
+    isCurrent: function isCurrent(lang) {
+      return this.currentLang == lang ? "is-current" : "";
+    },
+    changeLang: function changeLang(lang) {
+      this.currentLang = lang;
+      this.$root.$emit('lang-change', this.currentLang);
+    }
+  }
 });
 
 /***/ }),
@@ -397,7 +411,7 @@ var _data_social_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__we
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['current', 'sidebarIsClosed'],
+  props: ['current'],
   data: function data() {
     return {
       socials: _data_social_json__WEBPACK_IMPORTED_MODULE_1__,
@@ -650,8 +664,21 @@ var _data_skills_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__we
     }
   },
   created: function created() {
+    var _this2 = this;
+
     window.addEventListener('load', this.showTimelineElements);
     window.addEventListener('scroll', this.showTimelineElements);
+    this.$root.$on('lang-change', function (currentLang) {
+      switch (currentLang) {
+        case "en":
+          _this2.events = _data_events_json__WEBPACK_IMPORTED_MODULE_0__.en;
+          break;
+
+        case "fr":
+          _this2.events = _data_events_json__WEBPACK_IMPORTED_MODULE_0__.fr;
+          break;
+      }
+    });
   },
   beforeDestroy: function beforeDestroy() {
     window.removeEventListener('scroll', this.showTimelineElements);
@@ -771,7 +798,7 @@ exports.push([module.i, ".minimal-card-header {\n  display: flex;\n}\n.minimal-c
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".skills-view {\n  padding-left: 5%;\n}", ""]);
+exports.push([module.i, ".skills-view {\n  padding-left: 5%;\n}\n.lang-config {\n  margin: 0.2rem 0 0 0.5rem;\n  color: rgba(133, 133, 133, 0.6);\n  font-weight: 200;\n}\n.lang.is-current {\n  color: black !important;\n  font-weight: 300;\n}\n.lang:hover {\n  color: black !important;\n}", ""]);
 
 
 
@@ -2560,7 +2587,35 @@ var render = function() {
     },
     [
       _c("section", { staticClass: "hero is-medium is-light" }, [
-        _c("div", { staticClass: "hero-body p-t-lg-i p-b-lg-i" }, [
+        _c("div", { staticClass: "lang-config" }, [
+          _c(
+            "a",
+            {
+              class: "lang " + _vm.isCurrent("fr"),
+              on: {
+                click: function($event) {
+                  _vm.changeLang("fr")
+                }
+              }
+            },
+            [_vm._v("fr")]
+          ),
+          _vm._v("\n            |\n            "),
+          _c(
+            "a",
+            {
+              class: "lang " + _vm.isCurrent("en"),
+              on: {
+                click: function($event) {
+                  _vm.changeLang("en")
+                }
+              }
+            },
+            [_vm._v("en")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "hero-body p-t-md-i p-b-lg-i" }, [
           _c("h1", { staticClass: "title ohs-title p-b-md" }, [
             _c("span", { staticClass: "contrast" }, [_vm._v(_vm._s(_vm.title))])
           ]),

@@ -39,7 +39,7 @@
     import socialData from "../../data/social.json";
 
     export default {
-        props: ['current','sidebarIsClosed'],
+        props: ['current'],
         data() {
             return  {
                 socials: socialData,

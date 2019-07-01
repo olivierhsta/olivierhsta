@@ -64,6 +64,12 @@
         created: function() {
             window.addEventListener('load', this.showTimelineElements);
             window.addEventListener('scroll', this.showTimelineElements);
+            this.$root.$on('lang-change', (currentLang) => {
+                switch (currentLang) {
+                    case "en":this.events = eventsData.en; break;
+                    case "fr":this.events = eventsData.fr; break;
+                }
+            });
         },
         beforeDestroy: function () {
             window.removeEventListener('scroll', this.showTimelineElements);
