@@ -20,8 +20,12 @@
     <link href="css/app.css" rel="stylesheet">
 </head>
 <body>
-    <div id="app" class="full-page">
-        @yield('content')
+    <div id="app">
+        <sidebar-toggle></sidebar-toggle>
+        <div class="columns full-page">
+            @yield('content')
+            <sidebar current="Home"></sidebar>
+        </div>
     </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebar">
+    <div :class="'sidebar column '+classes">
         <div class="sidebar-header m-none">
             <div class="profile-pic-container p-none m-none">
                 <figure id="profile-pic" class="image">
@@ -43,8 +43,14 @@
         data() {
             return  {
                 socials: socialData,
-                personnal: personnalData
+                personnal: personnalData,
+                sidebarIsClosed:false,
+                windowWidth: window.innerWidth
             };
+        },
+        created: function() {
+            this.$root.$on('sidebar-state-change', (ss) => this.sidebarIsClosed = ss);
+            this.$root.$on('window-resize', (ww) => this.windowWidth = ww);
         },
         computed: {
             name() {
@@ -55,6 +61,10 @@
             },
             tilName() {
                 return this.sidebarIsClosed ? '' : 'TIL';
+            },
+            classes() {
+                let classes = ((this.windowWidth < 935) ? 'is-mobile' : 'is-desktop') + ' ';
+                return classes + ((this.sidebarIsClosed) ? 'is-closed' : 'is-opened');
             }
         },
         methods:{

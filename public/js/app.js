@@ -311,26 +311,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['title', 'subtitle'],
   data: function data() {
     return {
       sidebarIsClosed: false,
-      windowWidth: window.innerWidth,
-      desktopSidebarState: false // to remember the state on resize
-
+      windowWidth: window.innerWidth
     };
   },
   created: function created() {
-    if (this.windowWidth < 935) {
-      this.sidebarIsClosed = true;
-    }
+    var _this = this;
+
+    this.$root.$on('window-resize', function (ww) {
+      return _this.windowWidth = ww;
+    });
+    this.$root.$on('sidebar-state-change', function (ss) {
+      return _this.sidebarIsClosed = ss;
+    });
   },
   computed: {
     contentClasses: function contentClasses() {
@@ -341,34 +338,9 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         return 'is-95';
       }
-    },
-    sidebarClasses: function sidebarClasses() {
-      var classes = (this.windowWidth < 935 ? 'is-mobile' : 'is-desktop') + ' ';
-      return classes + (this.sidebarIsClosed ? 'is-closed' : 'is-opened');
     }
   },
-  methods: {
-    toggleSidebar: function toggleSidebar() {
-      this.sidebarIsClosed = !this.sidebarIsClosed;
-    }
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    this.$nextTick(function () {
-      window.addEventListener('resize', function () {
-        var oldSize = _this.windowWidth;
-        _this.windowWidth = window.innerWidth;
-
-        if (oldSize >= 935 && _this.windowWidth < 935) {
-          _this.desktopSidebarState = _this.sidebarIsClosed;
-          _this.sidebarIsClosed = true;
-        } else if (oldSize < 935 && _this.windowWidth >= 935) {
-          _this.sidebarIsClosed = _this.desktopSidebarState;
-        }
-      });
-    });
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -429,8 +401,20 @@ var _data_social_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__we
   data: function data() {
     return {
       socials: _data_social_json__WEBPACK_IMPORTED_MODULE_1__,
-      personnal: _data_personnal_json__WEBPACK_IMPORTED_MODULE_0__
+      personnal: _data_personnal_json__WEBPACK_IMPORTED_MODULE_0__,
+      sidebarIsClosed: false,
+      windowWidth: window.innerWidth
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.$root.$on('sidebar-state-change', function (ss) {
+      return _this.sidebarIsClosed = ss;
+    });
+    this.$root.$on('window-resize', function (ww) {
+      return _this.windowWidth = ww;
+    });
   },
   computed: {
     name: function name() {
@@ -441,6 +425,10 @@ var _data_social_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__we
     },
     tilName: function tilName() {
       return this.sidebarIsClosed ? '' : 'TIL';
+    },
+    classes: function classes() {
+      var classes = (this.windowWidth < 935 ? 'is-mobile' : 'is-desktop') + ' ';
+      return classes + (this.sidebarIsClosed ? 'is-closed' : 'is-opened');
     }
   },
   methods: {
@@ -451,6 +439,79 @@ var _data_social_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__we
         return '';
       }
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SidebarToggle.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SidebarToggle.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      sidebarIsClosed: false,
+      windowWidth: window.innerWidth,
+      desktopSidebarState: false // to remember the state on resize
+
+    };
+  },
+  created: function created() {
+    if (this.windowWidth < 935) {
+      this.sidebarIsClosed = true;
+    }
+
+    this.emitState();
+  },
+  computed: {},
+  methods: {
+    emitState: function emitState() {
+      this.$root.$emit('sidebar-state-change', this.sidebarIsClosed);
+    },
+    emitResize: function emitResize() {
+      this.$root.$emit('window-resize', this.windowWidth);
+    },
+    toggle: function toggle() {
+      this.sidebarIsClosed = !this.sidebarIsClosed;
+      this.emitState();
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$nextTick(function () {
+      window.addEventListener('resize', function () {
+        var oldSize = _this.windowWidth;
+        _this.windowWidth = window.innerWidth;
+
+        if (oldSize >= 935 && _this.windowWidth < 935) {
+          _this.desktopSidebarState = _this.sidebarIsClosed;
+          _this.sidebarIsClosed = true;
+
+          _this.emitState();
+
+          _this.emitResize();
+        } else if (oldSize < 935 && _this.windowWidth >= 935) {
+          _this.sidebarIsClosed = _this.desktopSidebarState;
+
+          _this.emitState();
+
+          _this.emitResize();
+        }
+      });
+    });
   }
 });
 
@@ -555,7 +616,7 @@ var _data_skills_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__we
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      events: _data_events_json__WEBPACK_IMPORTED_MODULE_0__,
+      events: _data_events_json__WEBPACK_IMPORTED_MODULE_0__.fr,
       skills: _data_skills_json__WEBPACK_IMPORTED_MODULE_1__,
       showElementAt: window.innerHeight - window.innerHeight / 7
     };
@@ -710,7 +771,7 @@ exports.push([module.i, ".minimal-card-header {\n  display: flex;\n}\n.minimal-c
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "#toggle-sidebar {\n  position: fixed;\n  top: 0;\n  right: 0;\n  color: #e3fafc;\n  background-color: #0b7285;\n  padding: 0.05em 0.4em;\n  margin: 0.5em;\n  border-radius: 50%;\n  z-index: 1000;\n}\n.skills-view {\n  padding-left: 5%;\n}", ""]);
+exports.push([module.i, ".skills-view {\n  padding-left: 5%;\n}", ""]);
 
 
 
@@ -726,6 +787,21 @@ exports.push([module.i, "#toggle-sidebar {\n  position: fixed;\n  top: 0;\n  rig
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
 exports.push([module.i, ".sidebar {\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  top: 0;\n  right: 0;\n  padding-top: 2em;\n  padding-left: 3%;\n  padding-right: 2%;\n  background: linear-gradient(to right, #1098ad, 20%, #0b7285);\n}\n.sidebar::after {\n  content: \"\";\n  background: url(/img/blue-mountain.jpg) center;\n  opacity: 0.2;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  position: absolute;\n  z-index: -1;\n}\n.sidebar span {\n  color: #0b7285;\n  background: #e3fafc;\n  line-height: 1.3em;\n}\n.sidebar .profile-pic-container {\n  display: block;\n  flex: none;\n  padding: 0;\n  width: 33.3333%;\n  transition: all 0.6s ease;\n}\n.sidebar .sidebar-header {\n  display: flex;\n  transition: width 0.5s ease;\n}\n.sidebar .name-container {\n  display: block;\n  padding: 0.75rem 0 0.75rem 0.75rem;\n  flex: none;\n  width: 66.66667%;\n  transition: all 0.6s ease;\n  font-size: 130%;\n}\n.sidebar #profile-pic {\n  padding-top: 1.5em;\n}\n.sidebar.is-desktop.is-opened {\n  flex: none;\n  width: 20.8333%;\n}\n.sidebar.is-desktop.is-closed {\n  flex: none;\n  width: 4.1667%;\n  padding-left: 0.25em;\n  padding-right: 0.25em;\n  text-align: center;\n}\n.sidebar.is-desktop.is-closed #sidebar-name {\n  display: none;\n}\n.sidebar.is-desktop.is-closed .profile-pic-container {\n  width: 100%;\n}\n.sidebar.is-desktop.is-closed .name-container {\n  width: 0;\n}\n.sidebar.is-desktop.is-closed .ohs-nav-tag {\n  width: 100%;\n  margin-right: 0 !important;\n  transition: width 1s ease;\n}\n.sidebar.is-desktop.is-closed .ohs-nav-tag .fas {\n  margin-right: 0;\n}\n.sidebar.is-desktop.is-closed .social-links {\n  text-align: center;\n  width: 100%;\n}\n.sidebar.is-desktop.is-closed .social-links a {\n  margin-right: 0;\n}\n.sidebar.is-mobile {\n  flex: none;\n  padding: 0;\n  width: 100%;\n  z-index: 999;\n  transition: 0.4s ease;\n}\n.sidebar.is-mobile .sidebar-header {\n  display: inline-block;\n  width: 100%;\n}\n.sidebar.is-mobile .sidebar-header .profile-pic-container {\n  margin: auto;\n  width: 8rem;\n}\n.sidebar.is-mobile .sidebar-header .profile-pic-container #profile-pic img {\n  width: auto;\n  max-height: 50vh;\n  margin: auto;\n}\n.sidebar.is-mobile .sidebar-header .name-container {\n  width: 100%;\n  text-align: center;\n}\n.sidebar.is-mobile .tags {\n  display: inline-block;\n  width: 100%;\n  text-align: center;\n}\n.sidebar.is-mobile .tags .tag {\n  width: 6rem;\n  height: 2rem;\n}\n.sidebar.is-mobile .social-links {\n  right: auto;\n  width: 100%;\n}\n.sidebar.is-mobile.is-opened {\n  -webkit-clip-path: circle(100%);\n          clip-path: circle(100%);\n}\n.sidebar.is-mobile.is-closed {\n  top: -48%;\n  right: -48%;\n  -webkit-clip-path: circle(0px);\n          clip-path: circle(0px);\n}\n.social-links {\n  position: absolute;\n  bottom: 0;\n  right: 0;\n  text-align: center;\n}\n.social-links a {\n  margin-bottom: 1vh;\n  margin-right: 0.5vw;\n}\n.social-links i {\n  color: #000000;\n  background-color: #e3fafc;\n  padding-top: 0.4em;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  border-radius: 0.3em;\n}\n.tag.ohs-nav-tag {\n  text-decoration: none !important;\n  color: #0b7285;\n  background-color: #e3fafc;\n  font-weight: bold;\n  margin: 0 0.4rem 0.2rem 0 !important;\n  width: 4rem;\n  transition: width 0.1s ease;\n}\n.tag.ohs-nav-tag.is-active {\n  color: #e3fafc;\n  background-color: transparent;\n  border: 2px solid #e3fafc;\n}\n.tag.ohs-nav-tag.is-active:hover, .tag.ohs-nav-tag.is-active:active {\n  color: #0b7285;\n  background-color: #e3fafc;\n}\n.tag.ohs-nav-tag:hover, .tag.ohs-nav-tag:active {\n  color: #e3fafc;\n  background-color: transparent;\n  border: 1px solid #e3fafc;\n}\n.tag.ohs-nav-tag .fas {\n  margin-right: 0.25em;\n}\n.fa-github:hover {\n  color: #9600bd;\n}\n.fa-twitter:hover {\n  color: #1da1f2;\n}\n.fa-linkedin-in:hover {\n  color: #0077B5;\n}\n.fa-at:hover {\n  color: #8a90c7;\n}\n.fa-stack-overflow:hover {\n  color: #f48024;\n}", ""]);
+
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SidebarToggle.vue?vue&type=style&index=0&lang=scss&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SidebarToggle.vue?vue&type=style&index=0&lang=scss& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, "#toggle-sidebar {\n  position: fixed;\n  top: 0;\n  right: 0;\n  color: #e3fafc;\n  background-color: #0b7285;\n  padding: 0.05em 0.4em;\n  margin: 0.5em;\n  border-radius: 50%;\n  z-index: 1000;\n}", ""]);
 
 
 
@@ -1379,6 +1455,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./Sidebar.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Sidebar.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SidebarToggle.vue?vue&type=style&index=0&lang=scss&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/lib/loader.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SidebarToggle.vue?vue&type=style&index=0&lang=scss& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./SidebarToggle.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SidebarToggle.vue?vue&type=style&index=0&lang=scss&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -2449,56 +2555,31 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "columns full-page" },
+    {
+      class: "resume-page column " + _vm.contentClasses + " p-none full-height"
+    },
     [
-      _c(
-        "div",
-        {
-          attrs: { id: "toggle-sidebar" },
-          on: {
-            click: function($event) {
-              _vm.toggleSidebar()
-            }
-          }
-        },
-        [_c("i", { staticClass: "fas fa-bars" })]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { class: "column " + _vm.contentClasses + " p-none full-height" },
-        [
-          _c("section", { staticClass: "hero is-medium is-light" }, [
-            _c("div", { staticClass: "hero-body p-t-lg-i p-b-lg-i" }, [
-              _c("h1", { staticClass: "title ohs-title p-b-md" }, [
-                _c("span", { staticClass: "contrast" }, [
-                  _vm._v(_vm._s(_vm.title))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("h2", { staticClass: "subtitle" }, [
-                _c("i", [_c("span", [_vm._v(_vm._s(_vm.subtitle))])])
-              ])
-            ])
+      _c("section", { staticClass: "hero is-medium is-light" }, [
+        _c("div", { staticClass: "hero-body p-t-lg-i p-b-lg-i" }, [
+          _c("h1", { staticClass: "title ohs-title p-b-md" }, [
+            _c("span", { staticClass: "contrast" }, [_vm._v(_vm._s(_vm.title))])
           ]),
           _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "columns" },
-            [_c("timeline", { staticClass: "column is-10" })],
-            1
-          )
-        ]
-      ),
+          _c("h2", { staticClass: "subtitle" }, [
+            _c("i", [_c("span", [_vm._v(_vm._s(_vm.subtitle))])])
+          ])
+        ])
+      ]),
       _vm._v(" "),
-      _c("sidebar", {
-        class: "column " + _vm.sidebarClasses,
-        attrs: { current: "Home", sidebarIsClosed: _vm.sidebarIsClosed }
-      })
-    ],
-    1
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "columns" },
+        [_c("timeline", { staticClass: "column is-10" })],
+        1
+      )
+    ]
   )
 }
 var staticRenderFns = []
@@ -2523,7 +2604,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "sidebar" }, [
+  return _c("div", { class: "sidebar column " + _vm.classes }, [
     _c("div", { staticClass: "sidebar-header m-none" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -2593,6 +2674,41 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SidebarToggle.vue?vue&type=template&id=9b551d16&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SidebarToggle.vue?vue&type=template&id=9b551d16& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      attrs: { id: "toggle-sidebar" },
+      on: {
+        click: function($event) {
+          _vm.toggle()
+        }
+      }
+    },
+    [_c("i", { staticClass: "fas fa-bars" })]
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -14068,10 +14184,10 @@ module.exports = g;
 /*!************************************!*\
   !*** ./resources/data/events.json ***!
   \************************************/
-/*! exports provided: 0, 1, default */
+/*! exports provided: en, fr, default */
 /***/ (function(module) {
 
-module.exports = [{"title":"Work history","icon":{"fontawesome":"fas fa-suitcase"},"events":[{"title":"Full-stack developer","subtitle":"Insum Solution","startdate":{"year":"Now","month":"","day":""},"enddate":{"year":"","month":"","day":""},"description":"I started working at Insum Solution inc. at the begining of the summer of 2019, where I built internal applications using Oracle APEX and PL/SQL as well as traditionnal front-end technologies (HTML, CSS, JavaScript/jQuery)."},{"title":"Full-stack developer","subtitle":"Integratik","startdate":{"year":"2018","month":"09","day":"1"},"enddate":{"year":"2018","month":"12","day":"21"},"description":"For the last few month of 2018 I worked at Integratik inc.  where I developed features for a web application used internally by a large medical company for managing their clients base."},{"title":"Full-stack developer Internship","subtitle":"Insum Solution","startdate":{"year":"2018","month":"06","day":"28"},"enddate":{"year":"2018","month":"08","day":"21"},"description":"During the summer of 2018, I had an internship at Insum Solution inc. where I followed a formation for Oracle APEX and PL/SQL before building small websites using those tools."},{"title":"IT Specialist Internship","subtitle":"Civilia","startdate":{"year":"2018","month":"01","day":"15"},"enddate":{"year":"2018","month":"04","day":"21"},"description":"At the begining of 2018, I had my first internship at Civilia inc.  There, I built tools to analyse public transportation data and built a web application to give a simple user interface for clients to use the solutions offered by Civilia."}]},{"title":"Education history","icon":{"fontawesome":"fas fa-user-graduate"},"events":[{"title":"Bachelor in Computer Science","subtitle":"Université de Montréal","startdate":{"year":"2016","month":"09","day":"1"},"enddate":{"year":"2019","month":"12","day":"21"},"description":"From 2016 to 2019, I followed my bachelor where I learned about computer architecture, web developpement, software development, databases, theorical computer sciences and many other subjects."},{"title":"DEC en Sciences Informatique et Mathématique","subtitle":"Collège du Bois-de-Boulogne","startdate":{"year":"2014","month":"08","day":"25"},"enddate":{"year":"2016","month":"05","day":"21"},"description":"In 2016, I graduated from the Bois-de-Boulogne CEGEP with a DEC focused on mathematics and software developement."},{"title":"High school diploma","subtitle":"Collège Mont-Saint-Louis","startdate":{"year":"2009","month":"09","day":"01"},"enddate":{"year":"2014","month":"06","day":"23"},"description":"Optained my high school diploma with advanced mathematic and sciences classes."}]}];
+module.exports = {"en":[{"title":"Work history","icon":{"fontawesome":"fas fa-suitcase"},"events":[{"title":"Full-stack developer","subtitle":"Insum Solution","startdate":{"year":"Now","month":"","day":""},"enddate":{"year":"","month":"","day":""},"description":"I started working at Insum Solution inc. at the begining of the summer of 2019, where I built internal applications using Oracle APEX and PL/SQL as well as traditionnal front-end technologies (HTML, CSS, JavaScript/jQuery)."},{"title":"Full-stack developer","subtitle":"Integratik","startdate":{"year":"2018","month":"09","day":"1"},"enddate":{"year":"2018","month":"12","day":"21"},"description":"For the last few month of 2018 I worked at Integratik inc.  where I developed features for a web application used internally by a large medical company for managing their clients base."},{"title":"Full-stack developer Internship","subtitle":"Insum Solution","startdate":{"year":"2018","month":"06","day":"28"},"enddate":{"year":"2018","month":"08","day":"21"},"description":"During the summer of 2018, I had an internship at Insum Solution inc. where I followed a formation for Oracle APEX and PL/SQL before building small websites using those tools."},{"title":"IT Specialist Internship","subtitle":"Civilia","startdate":{"year":"2018","month":"01","day":"15"},"enddate":{"year":"2018","month":"04","day":"21"},"description":"At the begining of 2018, I had my first internship at Civilia inc.  There, I built tools to analyse public transportation data and built a web application to give a simple user interface for clients to use the solutions offered by Civilia."}]},{"title":"Education history","icon":{"fontawesome":"fas fa-user-graduate"},"events":[{"title":"Bachelor in Computer Science","subtitle":"Université de Montréal","startdate":{"year":"2016","month":"09","day":"1"},"enddate":{"year":"2019","month":"12","day":"21"},"description":"From 2016 to 2019, I followed my bachelor where I learned about computer architecture, web developpement, software development, databases, theorical computer sciences and many other subjects."},{"title":"DEC en Sciences Informatique et Mathématique","subtitle":"Collège du Bois-de-Boulogne","startdate":{"year":"2014","month":"08","day":"25"},"enddate":{"year":"2016","month":"05","day":"21"},"description":"In 2016, I graduated from the Bois-de-Boulogne CEGEP with a DEC focused on mathematics and software developement."},{"title":"High school diploma","subtitle":"Collège Mont-Saint-Louis","startdate":{"year":"2009","month":"09","day":"01"},"enddate":{"year":"2014","month":"06","day":"23"},"description":"Optained my high school diploma with advanced mathematic and sciences classes."}]}],"fr":[{"title":"Expérience de travail","icon":{"fontawesome":"fas fa-suitcase"},"events":[{"title":"Développeur Full-stack","subtitle":"Insum Solution","startdate":{"year":"Ajd","month":"","day":""},"enddate":{"year":"","month":"","day":""},"description":" J'ai recommencé à travailler chez Insum Solutions inc. au début de l'été 2019 après y avoir fait un stage à l'été 2018.  Mon rôle est de développer des applications internes en utilisant Oracle APEX et PL/SQL en plus des technologies de front-end traditionnelles (HTML, CSS, JavaScript/jQuery)."},{"title":"Développeur Full-stack","subtitle":"Integratik","startdate":{"year":"2018","month":"09","day":"1"},"enddate":{"year":"2018","month":"12","day":"21"},"description":"Durant les derniers mois de 2018, j'ai travaillé chez Intégratik inc., où j'ai développé des fonctionnalités pour une application web utilisée par une clinique médicales pour gérer leurs clients, rendez-vous et services."},{"title":"Stagiaire en développement Full-stack","subtitle":"Insum Solution","startdate":{"year":"2018","month":"06","day":"28"},"enddate":{"year":"2018","month":"08","day":"21"},"description":"Durant l'été de 2018, j'ai été stagiaire chez Insum Solution inc., où j'ai suivi des formations pour Oracle APEX et PL/SQL et où j'ai construit des applications internes en utilisant ces technologies."},{"title":"Stagiaire TI","subtitle":"Civilia","startdate":{"year":"2018","month":"01","day":"15"},"enddate":{"year":"2018","month":"04","day":"21"},"description":"Au début de 2018, j'ai été stagiaire chez Civilia inc.  Durant mon stage, j'ai construit des outils d'analyse pour des données de transport citoyen.  J'ai aussi construit un portail Web pour donner une interface simple aux clients de Civilia pour utiliser les solutions qui leurs sont offertes."}]},{"title":"Éducation","icon":{"fontawesome":"fas fa-user-graduate"},"events":[{"title":"Baccalauréat en Information et Recherche Opérationnelle","subtitle":"Université de Montréal","startdate":{"year":"2016","month":"09","day":"1"},"enddate":{"year":"2019","month":"12","day":"21"},"description":"De 2016 à 2019, j'ai suivi mes études en informatique où j'ai acquéri des connaissances en développement Web, développement logiciel, bases de données, architecture d'ordinateur, informatique théorique et plusieurs autres sujets."},{"title":"DEC en Sciences Informatique et Mathématique","subtitle":"Collège du Bois-de-Boulogne","startdate":{"year":"2014","month":"08","day":"25"},"enddate":{"year":"2016","month":"05","day":"21"},"description":"En 2016, j'ai gradué du CEGEP de Bois-de-Boulogne avec un DEC avec une concentration sur les mathématiques et la programmation."},{"title":"Diplôme d'étude secondaire","subtitle":"Collège Mont-Saint-Louis","startdate":{"year":"2009","month":"09","day":"01"},"enddate":{"year":"2014","month":"06","day":"23"},"description":"Je détient un diplôme d'études secondaires avec sciences et mathématiques avancées"}]}]};
 
 /***/ }),
 
@@ -14141,6 +14257,7 @@ Vue.component('timeline-event', __webpack_require__(/*! ./components/TimelineEve
 Vue.component('timeline-item', __webpack_require__(/*! ./components/TimelineItem.vue */ "./resources/js/components/TimelineItem.vue").default);
 Vue.component('minimal-card', __webpack_require__(/*! ./components/MinimalCard.vue */ "./resources/js/components/MinimalCard.vue").default);
 Vue.component('skill-icon', __webpack_require__(/*! ./components/SkillIcon.vue */ "./resources/js/components/SkillIcon.vue").default);
+Vue.component('sidebar-toggle', __webpack_require__(/*! ./components/SidebarToggle.vue */ "./resources/js/components/SidebarToggle.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -14652,6 +14769,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Sidebar_vue_vue_type_template_id_81fbb27e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Sidebar_vue_vue_type_template_id_81fbb27e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/SidebarToggle.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/SidebarToggle.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SidebarToggle_vue_vue_type_template_id_9b551d16___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SidebarToggle.vue?vue&type=template&id=9b551d16& */ "./resources/js/components/SidebarToggle.vue?vue&type=template&id=9b551d16&");
+/* harmony import */ var _SidebarToggle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SidebarToggle.vue?vue&type=script&lang=js& */ "./resources/js/components/SidebarToggle.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _SidebarToggle_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SidebarToggle.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/components/SidebarToggle.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _SidebarToggle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SidebarToggle_vue_vue_type_template_id_9b551d16___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SidebarToggle_vue_vue_type_template_id_9b551d16___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/SidebarToggle.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/SidebarToggle.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/SidebarToggle.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarToggle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./SidebarToggle.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SidebarToggle.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarToggle_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SidebarToggle.vue?vue&type=style&index=0&lang=scss&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/SidebarToggle.vue?vue&type=style&index=0&lang=scss& ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarToggle_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/lib/loader.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./SidebarToggle.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SidebarToggle.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarToggle_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarToggle_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarToggle_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarToggle_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_lib_loader_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarToggle_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/SidebarToggle.vue?vue&type=template&id=9b551d16&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/SidebarToggle.vue?vue&type=template&id=9b551d16& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarToggle_vue_vue_type_template_id_9b551d16___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./SidebarToggle.vue?vue&type=template&id=9b551d16& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SidebarToggle.vue?vue&type=template&id=9b551d16&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarToggle_vue_vue_type_template_id_9b551d16___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SidebarToggle_vue_vue_type_template_id_9b551d16___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

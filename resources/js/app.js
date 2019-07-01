@@ -28,6 +28,7 @@ Vue.component('timeline-event', require('./components/TimelineEvent.vue').defaul
 Vue.component('timeline-item', require('./components/TimelineItem.vue').default);
 Vue.component('minimal-card', require('./components/MinimalCard.vue').default);
 Vue.component('skill-icon', require('./components/SkillIcon.vue').default);
+Vue.component('sidebar-toggle', require('./components/SidebarToggle.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

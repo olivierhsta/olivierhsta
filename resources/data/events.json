@@ -1,4 +1,4 @@
-[{
+{"en":[{
     "title": "Work history",
     "icon": {
         "fontawesome": "fas fa-suitcase"
@@ -114,4 +114,121 @@
           },
           "description":"Optained my high school diploma with advanced mathematic and sciences classes."
       }]
-}]
+}],
+"fr":[{
+    "title": "Expérience de travail",
+    "icon": {
+        "fontawesome": "fas fa-suitcase"
+    },
+    "events": [{
+        "title": "Développeur Full-stack",
+        "subtitle":"Insum Solution",
+        "startdate": {
+            "year": "Ajd",
+            "month":"",
+            "day":""
+        },
+        "enddate": {
+            "year": "",
+            "month":"",
+            "day":""
+        },
+        "description":" J'ai recommencé à travailler chez Insum Solutions inc. au début de l'été 2019 après y avoir fait un stage à l'été 2018.  Mon rôle est de développer des applications internes en utilisant Oracle APEX et PL/SQL en plus des technologies de front-end traditionnelles (HTML, CSS, JavaScript/jQuery)."
+    },
+    {
+        "title": "Développeur Full-stack",
+        "subtitle": "Integratik",
+        "startdate": {
+            "year": "2018",
+            "month":"09",
+            "day":"1"
+        },
+        "enddate": {
+            "year": "2018",
+            "month":"12",
+            "day":"21"
+        },
+        "description":"Durant les derniers mois de 2018, j'ai travaillé chez Intégratik inc., où j'ai développé des fonctionnalités pour une application web utilisée par une clinique médicales pour gérer leurs clients, rendez-vous et services."
+    },
+    {
+        "title": "Stagiaire en développement Full-stack",
+        "subtitle":"Insum Solution",
+        "startdate": {
+            "year": "2018",
+            "month":"06",
+            "day":"28"
+        },
+        "enddate": {
+            "year": "2018",
+            "month":"08",
+            "day":"21"
+        },
+        "description":"Durant l'été de 2018, j'ai été stagiaire chez Insum Solution inc., où j'ai suivi des formations pour Oracle APEX et PL/SQL et où j'ai construit des applications internes en utilisant ces technologies."
+    },
+    {
+        "title": "Stagiaire TI",
+        "subtitle": "Civilia",
+        "startdate": {
+            "year": "2018",
+            "month":"01",
+            "day":"15"
+        },
+        "enddate": {
+            "year": "2018",
+            "month":"04",
+            "day":"21"
+        },
+        "description":"Au début de 2018, j'ai été stagiaire chez Civilia inc.  Durant mon stage, j'ai construit des outils d'analyse pour des données de transport citoyen.  J'ai aussi construit un portail Web pour donner une interface simple aux clients de Civilia pour utiliser les solutions qui leurs sont offertes."
+    }]
+  },
+  {
+      "title": "Éducation",
+      "icon": {
+          "fontawesome": "fas fa-user-graduate"
+      },
+      "events": [{
+          "title": "Baccalauréat en Information et Recherche Opérationnelle",
+          "subtitle": "Université de Montréal",
+          "startdate": {
+              "year": "2016",
+              "month":"09",
+              "day":"1"
+          },
+          "enddate": {
+              "year": "2019",
+              "month":"12",
+              "day":"21"
+          },
+          "description":"De 2016 à 2019, j'ai suivi mes études en informatique où j'ai acquéri des connaissances en développement Web, développement logiciel, bases de données, architecture d'ordinateur, informatique théorique et plusieurs autres sujets."
+      },
+      {
+          "title": "DEC en Sciences Informatique et Mathématique",
+          "subtitle":"Collège du Bois-de-Boulogne",
+          "startdate": {
+              "year": "2014",
+              "month":"08",
+              "day":"25"
+          },
+          "enddate": {
+              "year": "2016",
+              "month":"05",
+              "day":"21"
+          },
+          "description":"En 2016, j'ai gradué du CEGEP de Bois-de-Boulogne avec un DEC avec une concentration sur les mathématiques et la programmation."
+      },
+      {
+          "title": "Diplôme d'étude secondaire",
+          "subtitle": "Collège Mont-Saint-Louis",
+          "startdate": {
+              "year": "2009",
+              "month":"09",
+              "day":"01"
+          },
+          "enddate": {
+              "year": "2014",
+              "month":"06",
+              "day":"23"
+          },
+          "description":"Je détient un diplôme d'études secondaires avec sciences et mathématiques avancées"
+      }]
+}]}

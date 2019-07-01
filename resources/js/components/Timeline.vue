@@ -33,7 +33,7 @@
     export default {
         data() {
             return  {
-                events:eventsData,
+                events:eventsData.fr,
                 skills:skillsData,
                 showElementAt: window.innerHeight - window.innerHeight/7
             };
