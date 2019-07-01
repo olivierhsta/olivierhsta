@@ -28,20 +28,18 @@
 </template>
 
 <script>
-    import eventsData from "../../data/events.json";
-    import skillsData from "../../data/skills.json";
     export default {
+        props:['eventsData', 'skillsData'],
         data() {
             return  {
-                events:eventsData.fr,
-                skills:skillsData,
+                events:this.eventsData.fr,
+                skills:this.skillsData,
                 showElementAt: window.innerHeight - window.innerHeight/7
             };
         },
         methods: {
             showTimelineElements : function() {
                 Array.from(document.getElementsByClassName("timeline-element")).forEach( (el) => {
-                    console.log(el);
                     if (el.getBoundingClientRect().top < this.showElementAt) {
                         el.classList.add('fade-in-from-down');
                     }
@@ -65,10 +63,7 @@
             window.addEventListener('load', this.showTimelineElements);
             window.addEventListener('scroll', this.showTimelineElements);
             this.$root.$on('lang-change', (currentLang) => {
-                switch (currentLang) {
-                    case "en":this.events = eventsData.en; break;
-                    case "fr":this.events = eventsData.fr; break;
-                }
+                this.events = this.eventsData[currentLang];
             });
         },
         beforeDestroy: function () {

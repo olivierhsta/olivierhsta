@@ -2,9 +2,12 @@
     <div :class="'resume-page column ' + contentClasses + ' p-none full-height'">
         <section class="hero is-medium is-light">
             <div class="lang-config">
-                <a :class="'lang ' + isCurrent('fr')" @click="changeLang('fr')">fr</a>
-                |
-                <a :class="'lang ' + isCurrent('en')" @click="changeLang('en')">en</a>
+                <span v-for="(lang, index) in langs">
+                    <a :class="'lang ' + isCurrent(lang)" @click="changeLang(lang)">
+                        {{lang}}
+                    </a>
+                    <span v-if="nextLangIsNotNull(index)">|</span>
+                </span>
             </div>
             <div class="hero-body p-t-md-i p-b-lg-i">
                 <h1 class="title ohs-title p-b-md">
@@ -17,16 +20,20 @@
         </section>
         <br />
         <div class="columns">
-            <timeline class="column is-10"></timeline>
+            <timeline class="column is-10" :eventsData="events" :skillsData="skills"></timeline>
         </div>
     </div>
 </template>
 
 <script>
+    import eventsData from "../../data/events.json";
+    import skillsData from "../../data/skills.json";
     export default {
         props: ['title', 'subtitle'],
         data() {
             return  {
+                events: eventsData,
+                skills: skillsData,
                 sidebarIsClosed:false,
                 windowWidth: window.innerWidth,
                 currentLang: "fr"
@@ -37,7 +44,7 @@
             this.$root.$on('sidebar-state-change', (ss) => this.sidebarIsClosed = ss);
         },
         computed: {
-            contentClasses() {
+            contentClasses: function() {
                 if (this.windowWidth < 935) {
                     return 'is-12';
                 } else if (this.sidebarIsClosed) {
@@ -46,14 +53,26 @@
                     return 'is-95';
                 }
             },
+            langs: function() {
+                let langs = [];
+                for (let lang in this.events) {
+                    langs.push(lang);
+                }
+                return langs;
+            }
         },
         methods: {
             isCurrent: function(lang) {
                 return this.currentLang == lang ? "is-current" : "";
             },
             changeLang: function(lang) {
-                this.currentLang = lang;
-                this.$root.$emit('lang-change', this.currentLang);
+                if (this.langs.includes(lang)) {
+                    this.currentLang = lang;
+                    this.$root.$emit('lang-change', this.currentLang);
+                }
+            },
+            nextLangIsNotNull: function(index) {
+                return this.langs[index+1] !== undefined;
             }
         },
     }

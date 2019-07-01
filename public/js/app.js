@@ -292,6 +292,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _data_events_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../data/events.json */ "./resources/data/events.json");
+var _data_events_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data/events.json */ "./resources/data/events.json", 1);
+/* harmony import */ var _data_skills_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../data/skills.json */ "./resources/data/skills.json");
+var _data_skills_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data/skills.json */ "./resources/data/skills.json", 1);
 //
 //
 //
@@ -316,10 +320,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['title', 'subtitle'],
   data: function data() {
     return {
+      events: _data_events_json__WEBPACK_IMPORTED_MODULE_0__,
+      skills: _data_skills_json__WEBPACK_IMPORTED_MODULE_1__,
       sidebarIsClosed: false,
       windowWidth: window.innerWidth,
       currentLang: "fr"
@@ -344,6 +355,15 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         return 'is-95';
       }
+    },
+    langs: function langs() {
+      var langs = [];
+
+      for (var lang in this.events) {
+        langs.push(lang);
+      }
+
+      return langs;
     }
   },
   methods: {
@@ -351,8 +371,13 @@ __webpack_require__.r(__webpack_exports__);
       return this.currentLang == lang ? "is-current" : "";
     },
     changeLang: function changeLang(lang) {
-      this.currentLang = lang;
-      this.$root.$emit('lang-change', this.currentLang);
+      if (this.langs.includes(lang)) {
+        this.currentLang = lang;
+        this.$root.$emit('lang-change', this.currentLang);
+      }
+    },
+    nextLangIsNotNull: function nextLangIsNotNull(index) {
+      return this.langs[index + 1] !== undefined;
     }
   }
 });
@@ -592,10 +617,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _data_events_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../data/events.json */ "./resources/data/events.json");
-var _data_events_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data/events.json */ "./resources/data/events.json", 1);
-/* harmony import */ var _data_skills_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../data/skills.json */ "./resources/data/skills.json");
-var _data_skills_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data/skills.json */ "./resources/data/skills.json", 1);
 //
 //
 //
@@ -625,13 +646,12 @@ var _data_skills_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__we
 //
 //
 //
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['eventsData', 'skillsData'],
   data: function data() {
     return {
-      events: _data_events_json__WEBPACK_IMPORTED_MODULE_0__.fr,
-      skills: _data_skills_json__WEBPACK_IMPORTED_MODULE_1__,
+      events: this.eventsData.fr,
+      skills: this.skillsData,
       showElementAt: window.innerHeight - window.innerHeight / 7
     };
   },
@@ -640,8 +660,6 @@ var _data_skills_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__we
       var _this = this;
 
       Array.from(document.getElementsByClassName("timeline-element")).forEach(function (el) {
-        console.log(el);
-
         if (el.getBoundingClientRect().top < _this.showElementAt) {
           el.classList.add('fade-in-from-down');
         }
@@ -669,15 +687,7 @@ var _data_skills_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__we
     window.addEventListener('load', this.showTimelineElements);
     window.addEventListener('scroll', this.showTimelineElements);
     this.$root.$on('lang-change', function (currentLang) {
-      switch (currentLang) {
-        case "en":
-          _this2.events = _data_events_json__WEBPACK_IMPORTED_MODULE_0__.en;
-          break;
-
-        case "fr":
-          _this2.events = _data_events_json__WEBPACK_IMPORTED_MODULE_0__.fr;
-          break;
-      }
+      _this2.events = _this2.eventsData[currentLang];
     });
   },
   beforeDestroy: function beforeDestroy() {
@@ -2587,33 +2597,37 @@ var render = function() {
     },
     [
       _c("section", { staticClass: "hero is-medium is-light" }, [
-        _c("div", { staticClass: "lang-config" }, [
-          _c(
-            "a",
-            {
-              class: "lang " + _vm.isCurrent("fr"),
-              on: {
-                click: function($event) {
-                  _vm.changeLang("fr")
-                }
-              }
-            },
-            [_vm._v("fr")]
-          ),
-          _vm._v("\n            |\n            "),
-          _c(
-            "a",
-            {
-              class: "lang " + _vm.isCurrent("en"),
-              on: {
-                click: function($event) {
-                  _vm.changeLang("en")
-                }
-              }
-            },
-            [_vm._v("en")]
-          )
-        ]),
+        _c(
+          "div",
+          { staticClass: "lang-config" },
+          _vm._l(_vm.langs, function(lang, index) {
+            return _c("span", [
+              _c(
+                "a",
+                {
+                  class: "lang " + _vm.isCurrent(lang),
+                  on: {
+                    click: function($event) {
+                      _vm.changeLang(lang)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(lang) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.nextLangIsNotNull(index)
+                ? _c("span", [_vm._v("|")])
+                : _vm._e()
+            ])
+          }),
+          0
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "hero-body p-t-md-i p-b-lg-i" }, [
           _c("h1", { staticClass: "title ohs-title p-b-md" }, [
@@ -2631,7 +2645,12 @@ var render = function() {
       _c(
         "div",
         { staticClass: "columns" },
-        [_c("timeline", { staticClass: "column is-10" })],
+        [
+          _c("timeline", {
+            staticClass: "column is-10",
+            attrs: { eventsData: _vm.events, skillsData: _vm.skills }
+          })
+        ],
         1
       )
     ]
@@ -14239,10 +14258,10 @@ module.exports = g;
 /*!************************************!*\
   !*** ./resources/data/events.json ***!
   \************************************/
-/*! exports provided: en, fr, default */
+/*! exports provided: fr, en, default */
 /***/ (function(module) {
 
-module.exports = {"en":[{"title":"Work history","icon":{"fontawesome":"fas fa-suitcase"},"events":[{"title":"Full-stack developer","subtitle":"Insum Solution","startdate":{"year":"Now","month":"","day":""},"enddate":{"year":"","month":"","day":""},"description":"I started working at Insum Solution inc. at the begining of the summer of 2019, where I built internal applications using Oracle APEX and PL/SQL as well as traditionnal front-end technologies (HTML, CSS, JavaScript/jQuery)."},{"title":"Full-stack developer","subtitle":"Integratik","startdate":{"year":"2018","month":"09","day":"1"},"enddate":{"year":"2018","month":"12","day":"21"},"description":"For the last few month of 2018 I worked at Integratik inc.  where I developed features for a web application used internally by a large medical company for managing their clients base."},{"title":"Full-stack developer Internship","subtitle":"Insum Solution","startdate":{"year":"2018","month":"06","day":"28"},"enddate":{"year":"2018","month":"08","day":"21"},"description":"During the summer of 2018, I had an internship at Insum Solution inc. where I followed a formation for Oracle APEX and PL/SQL before building small websites using those tools."},{"title":"IT Specialist Internship","subtitle":"Civilia","startdate":{"year":"2018","month":"01","day":"15"},"enddate":{"year":"2018","month":"04","day":"21"},"description":"At the begining of 2018, I had my first internship at Civilia inc.  There, I built tools to analyse public transportation data and built a web application to give a simple user interface for clients to use the solutions offered by Civilia."}]},{"title":"Education history","icon":{"fontawesome":"fas fa-user-graduate"},"events":[{"title":"Bachelor in Computer Science","subtitle":"Université de Montréal","startdate":{"year":"2016","month":"09","day":"1"},"enddate":{"year":"2019","month":"12","day":"21"},"description":"From 2016 to 2019, I followed my bachelor where I learned about computer architecture, web developpement, software development, databases, theorical computer sciences and many other subjects."},{"title":"DEC en Sciences Informatique et Mathématique","subtitle":"Collège du Bois-de-Boulogne","startdate":{"year":"2014","month":"08","day":"25"},"enddate":{"year":"2016","month":"05","day":"21"},"description":"In 2016, I graduated from the Bois-de-Boulogne CEGEP with a DEC focused on mathematics and software developement."},{"title":"High school diploma","subtitle":"Collège Mont-Saint-Louis","startdate":{"year":"2009","month":"09","day":"01"},"enddate":{"year":"2014","month":"06","day":"23"},"description":"Optained my high school diploma with advanced mathematic and sciences classes."}]}],"fr":[{"title":"Expérience de travail","icon":{"fontawesome":"fas fa-suitcase"},"events":[{"title":"Développeur Full-stack","subtitle":"Insum Solution","startdate":{"year":"Ajd","month":"","day":""},"enddate":{"year":"","month":"","day":""},"description":" J'ai recommencé à travailler chez Insum Solutions inc. au début de l'été 2019 après y avoir fait un stage à l'été 2018.  Mon rôle est de développer des applications internes en utilisant Oracle APEX et PL/SQL en plus des technologies de front-end traditionnelles (HTML, CSS, JavaScript/jQuery)."},{"title":"Développeur Full-stack","subtitle":"Integratik","startdate":{"year":"2018","month":"09","day":"1"},"enddate":{"year":"2018","month":"12","day":"21"},"description":"Durant les derniers mois de 2018, j'ai travaillé chez Intégratik inc., où j'ai développé des fonctionnalités pour une application web utilisée par une clinique médicales pour gérer leurs clients, rendez-vous et services."},{"title":"Stagiaire en développement Full-stack","subtitle":"Insum Solution","startdate":{"year":"2018","month":"06","day":"28"},"enddate":{"year":"2018","month":"08","day":"21"},"description":"Durant l'été de 2018, j'ai été stagiaire chez Insum Solution inc., où j'ai suivi des formations pour Oracle APEX et PL/SQL et où j'ai construit des applications internes en utilisant ces technologies."},{"title":"Stagiaire TI","subtitle":"Civilia","startdate":{"year":"2018","month":"01","day":"15"},"enddate":{"year":"2018","month":"04","day":"21"},"description":"Au début de 2018, j'ai été stagiaire chez Civilia inc.  Durant mon stage, j'ai construit des outils d'analyse pour des données de transport citoyen.  J'ai aussi construit un portail Web pour donner une interface simple aux clients de Civilia pour utiliser les solutions qui leurs sont offertes."}]},{"title":"Éducation","icon":{"fontawesome":"fas fa-user-graduate"},"events":[{"title":"Baccalauréat en Information et Recherche Opérationnelle","subtitle":"Université de Montréal","startdate":{"year":"2016","month":"09","day":"1"},"enddate":{"year":"2019","month":"12","day":"21"},"description":"De 2016 à 2019, j'ai suivi mes études en informatique où j'ai acquéri des connaissances en développement Web, développement logiciel, bases de données, architecture d'ordinateur, informatique théorique et plusieurs autres sujets."},{"title":"DEC en Sciences Informatique et Mathématique","subtitle":"Collège du Bois-de-Boulogne","startdate":{"year":"2014","month":"08","day":"25"},"enddate":{"year":"2016","month":"05","day":"21"},"description":"En 2016, j'ai gradué du CEGEP de Bois-de-Boulogne avec un DEC avec une concentration sur les mathématiques et la programmation."},{"title":"Diplôme d'étude secondaire","subtitle":"Collège Mont-Saint-Louis","startdate":{"year":"2009","month":"09","day":"01"},"enddate":{"year":"2014","month":"06","day":"23"},"description":"Je détient un diplôme d'études secondaires avec sciences et mathématiques avancées"}]}]};
+module.exports = {"fr":[{"title":"Expérience de travail","icon":{"fontawesome":"fas fa-suitcase"},"events":[{"title":"Développeur Full-stack","subtitle":"Insum Solution","startdate":{"year":"Ajd","month":"","day":""},"enddate":{"year":"","month":"","day":""},"description":" J'ai recommencé à travailler chez Insum Solutions inc. au début de l'été 2019 après y avoir fait un stage à l'été 2018.  Mon rôle est de développer des applications internes en utilisant Oracle APEX et PL/SQL en plus des technologies de front-end traditionnelles (HTML, CSS, JavaScript/jQuery)."},{"title":"Développeur Full-stack","subtitle":"Integratik","startdate":{"year":"2018","month":"09","day":"1"},"enddate":{"year":"2018","month":"12","day":"21"},"description":"Durant les derniers mois de 2018, j'ai travaillé chez Intégratik inc., où j'ai développé des fonctionnalités pour une application web utilisée par une clinique médicales pour gérer leurs clients, rendez-vous et services."},{"title":"Stagiaire en développement Full-stack","subtitle":"Insum Solution","startdate":{"year":"2018","month":"06","day":"28"},"enddate":{"year":"2018","month":"08","day":"21"},"description":"Durant l'été de 2018, j'ai été stagiaire chez Insum Solution inc., où j'ai suivi des formations pour Oracle APEX et PL/SQL et où j'ai construit des applications internes en utilisant ces technologies."},{"title":"Stagiaire TI","subtitle":"Civilia","startdate":{"year":"2018","month":"01","day":"15"},"enddate":{"year":"2018","month":"04","day":"21"},"description":"Au début de 2018, j'ai été stagiaire chez Civilia inc.  Durant mon stage, j'ai construit des outils d'analyse pour des données de transport citoyen.  J'ai aussi construit un portail Web pour donner une interface simple aux clients de Civilia pour utiliser les solutions qui leurs sont offertes."}]},{"title":"Éducation","icon":{"fontawesome":"fas fa-user-graduate"},"events":[{"title":"Baccalauréat en Information et Recherche Opérationnelle","subtitle":"Université de Montréal","startdate":{"year":"2016","month":"09","day":"1"},"enddate":{"year":"2019","month":"12","day":"21"},"description":"De 2016 à 2019, j'ai suivi mes études en informatique où j'ai acquéri des connaissances en développement Web, développement logiciel, bases de données, architecture d'ordinateur, informatique théorique et plusieurs autres sujets."},{"title":"DEC en Sciences Informatique et Mathématique","subtitle":"Collège du Bois-de-Boulogne","startdate":{"year":"2014","month":"08","day":"25"},"enddate":{"year":"2016","month":"05","day":"21"},"description":"En 2016, j'ai gradué du CEGEP de Bois-de-Boulogne avec un DEC avec une concentration sur les mathématiques et la programmation."},{"title":"Diplôme d'étude secondaire","subtitle":"Collège Mont-Saint-Louis","startdate":{"year":"2009","month":"09","day":"01"},"enddate":{"year":"2014","month":"06","day":"23"},"description":"Je détient un diplôme d'études secondaires avec sciences et mathématiques avancées"}]}],"en":[{"title":"Work history","icon":{"fontawesome":"fas fa-suitcase"},"events":[{"title":"Full-stack developer","subtitle":"Insum Solution","startdate":{"year":"Now","month":"","day":""},"enddate":{"year":"","month":"","day":""},"description":"I started working at Insum Solution inc. at the begining of the summer of 2019, where I built internal applications using Oracle APEX and PL/SQL as well as traditionnal front-end technologies (HTML, CSS, JavaScript/jQuery)."},{"title":"Full-stack developer","subtitle":"Integratik","startdate":{"year":"2018","month":"09","day":"1"},"enddate":{"year":"2018","month":"12","day":"21"},"description":"For the last few month of 2018 I worked at Integratik inc.  where I developed features for a web application used internally by a large medical company for managing their clients base."},{"title":"Full-stack developer Internship","subtitle":"Insum Solution","startdate":{"year":"2018","month":"06","day":"28"},"enddate":{"year":"2018","month":"08","day":"21"},"description":"During the summer of 2018, I had an internship at Insum Solution inc. where I followed a formation for Oracle APEX and PL/SQL before building small websites using those tools."},{"title":"IT Specialist Internship","subtitle":"Civilia","startdate":{"year":"2018","month":"01","day":"15"},"enddate":{"year":"2018","month":"04","day":"21"},"description":"At the begining of 2018, I had my first internship at Civilia inc.  There, I built tools to analyse public transportation data and built a web application to give a simple user interface for clients to use the solutions offered by Civilia."}]},{"title":"Education history","icon":{"fontawesome":"fas fa-user-graduate"},"events":[{"title":"Bachelor in Computer Science","subtitle":"Université de Montréal","startdate":{"year":"2016","month":"09","day":"1"},"enddate":{"year":"2019","month":"12","day":"21"},"description":"From 2016 to 2019, I followed my bachelor where I learned about computer architecture, web developpement, software development, databases, theorical computer sciences and many other subjects."},{"title":"DEC en Sciences Informatique et Mathématique","subtitle":"Collège du Bois-de-Boulogne","startdate":{"year":"2014","month":"08","day":"25"},"enddate":{"year":"2016","month":"05","day":"21"},"description":"In 2016, I graduated from the Bois-de-Boulogne CEGEP with a DEC focused on mathematics and software developement."},{"title":"High school diploma","subtitle":"Collège Mont-Saint-Louis","startdate":{"year":"2009","month":"09","day":"01"},"enddate":{"year":"2014","month":"06","day":"23"},"description":"Optained my high school diploma with advanced mathematic and sciences classes."}]}]};
 
 /***/ }),
 
