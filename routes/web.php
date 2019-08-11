@@ -14,4 +14,4 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/til', 'NotesController@index');
+Route::get('/til', 'TILController@index');

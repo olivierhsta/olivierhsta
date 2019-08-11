@@ -7,7 +7,7 @@
                 </figure>
             </div>
             <div class="name-container">
-                <h1><span id="sidebar-name" class="contrast">{{ name }}</span></h1>
+                <h1><span id="sidebar-name" class="contrast">{{ personnal.name }}</span></h1>
             </div>
         </div>
 
@@ -53,9 +53,6 @@
             this.$root.$on('window-resize', (ww) => this.windowWidth = ww);
         },
         computed: {
-            name() {
-                return this.personnal.name.toLowerCase();
-            },
             homeName() {
                 return this.sidebarIsClosed ? '' : 'Home';
             },

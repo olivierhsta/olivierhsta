@@ -18,9 +18,6 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('note-card', require('./components/NoteCard.vue').default);
-Vue.component('notes-count', require('./components/NotesCount.vue').default);
-Vue.component('note-modal', require('./components/NoteModal.vue').default);
 Vue.component('resume-page', require('./components/ResumePage.vue').default);
 Vue.component('sidebar', require('./components/Sidebar.vue').default);
 Vue.component('timeline', require('./components/Timeline.vue').default);
@@ -29,6 +26,7 @@ Vue.component('timeline-item', require('./components/TimelineItem.vue').default)
 Vue.component('minimal-card', require('./components/MinimalCard.vue').default);
 Vue.component('skill-icon', require('./components/SkillIcon.vue').default);
 Vue.component('sidebar-toggle', require('./components/SidebarToggle.vue').default);
+Vue.component('header-hero', require('./components/HeaderHero.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

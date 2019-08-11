@@ -143,7 +143,7 @@
             padding: 0.7em 0;
             color:$color9;
             background-color: $body-bg;
-            border-radius: 50% 50% 0 50%;
+            border-radius: 50%;
             border: 2px solid $color9;
         }
 
@@ -240,7 +240,7 @@
                         grid-row-end: span 1;
                         margin-left: 1.38rem;
                         transition: margin 0.5s ease;
-                        border-radius: 50% 50% 50% 0;
+                        border-radius: 50%;
                     }
 
                     .timeline-title {

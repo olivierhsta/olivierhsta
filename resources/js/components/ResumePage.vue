@@ -1,23 +1,6 @@
 <template>
     <div :class="'resume-page column ' + contentClasses + ' p-none full-height'">
-        <section class="hero is-medium is-light">
-            <div class="lang-config">
-                <span v-for="(lang, index) in langs">
-                    <a :class="'lang ' + isCurrent(lang)" @click="changeLang(lang)">
-                        {{lang}}
-                    </a>
-                    <span v-if="nextLangIsNotNull(index)">|</span>
-                </span>
-            </div>
-            <div class="hero-body p-t-md-i p-b-lg-i">
-                <h1 class="title ohs-title p-b-md">
-                    <span class="contrast">{{ title }}</span>
-                </h1>
-                <h2 class="subtitle">
-                    <i><span>{{ subtitle }}</span></i>
-                </h2>
-            </div>
-        </section>
+        <header-hero :langs="langs" :title="personnal.name" :subtitle="personnal.job"></header-hero>
         <br />
         <div class="columns">
             <timeline class="column is-10" :eventsData="events" :skillsData="skills"></timeline>
@@ -28,12 +11,13 @@
 <script>
     import eventsData from "../../data/events.json";
     import skillsData from "../../data/skills.json";
+    import personnalData from "../../data/personnal.json";
     export default {
-        props: ['title', 'subtitle'],
         data() {
             return  {
                 events: eventsData,
                 skills: skillsData,
+                personnal: personnalData,
                 sidebarIsClosed:false,
                 windowWidth: window.innerWidth,
                 currentLang: "fr"

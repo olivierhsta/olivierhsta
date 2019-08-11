@@ -3,7 +3,7 @@
     "icon": "fas fa-server",
     "skills":[{
             "name": "PHP",
-            "level":"90",
+            "level":"80",
             "icon": "fab fa-php",
             "color": "#787CB5"
         },
@@ -15,7 +15,7 @@
         },
         {
             "name": "APEX",
-            "level":"70",
+            "level":"90",
             "icon":"fas fa-pencil-ruler",
             "color": "#f29111"
         }]
@@ -31,13 +31,13 @@
         },
         {
             "name": "Oracle SQL",
-            "level":"70",
+            "level":"80",
             "icon":"icon-oracle",
             "color": "#F80102"
         },
         {
             "name": "PL/SQL",
-            "level":"70",
+            "level":"80",
             "icon":"icon-plsql",
             "color": "#000000"
         }]
