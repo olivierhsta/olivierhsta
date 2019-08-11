@@ -24,7 +24,7 @@
         <sidebar-toggle></sidebar-toggle>
         <div class="columns full-page">
             @yield('content')
-            <sidebar current="Home"></sidebar>
+            <sidebar current="{{ $current }}"></sidebar>
         </div>
     </div>
 </body>

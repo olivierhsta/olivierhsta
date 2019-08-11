@@ -12,10 +12,10 @@
         </div>
 
         <div class="tags p-t-md">
-            <a  :class="getNavItemClass('Home') + ' tag ohs-nav-tag'" href="/" title="Home">
+            <a  id="nav-home" :class="getNavItemClass('Home') + ' tag ohs-nav-tag'" href="/" title="Home">
                 <i class="fas fa-home"></i>{{ homeName }}
             </a>
-            <a :class="getNavItemClass('TIL') + ' tag ohs-nav-tag'" href="/til" title="Today I Learned">
+            <a id="nav-til" :class="getNavItemClass('TIL') + ' tag ohs-nav-tag'" href="https://clouddev.insum.app/ords/f?p=156:1" @click="confirmQuit($event)" title="Today I Learned">
                 <i class="fas fa-bookmark"></i>{{ tilName }}
             </a>
         </div>
@@ -70,6 +70,11 @@
                     return 'is-active';
                 } else {
                     return '';
+                }
+            },
+            confirmQuit(event) {
+                if (!confirm('This link will redirect to a new domain, are you sure you want to continue?')) {
+                    event.preventDefault();
                 }
             }
         }
