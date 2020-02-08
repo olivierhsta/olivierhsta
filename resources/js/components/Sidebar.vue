@@ -7,7 +7,7 @@
                 </figure>
             </div>
             <div class="name-container">
-                <h1><span id="sidebar-name" class="contrast">{{ personnal.name }}</span></h1>
+                <h1><span id="sidebar-name" class="contrast" v-html="formatName(personnal.name)"></span></h1>
             </div>
         </div>
 
@@ -76,6 +76,9 @@
                 if (!confirm('This link will redirect to a new domain, are you sure you want to continue?')) {
                     event.preventDefault();
                 }
+            },
+            formatName(name) {
+                return name.replace(/ /g,"<br/>");
             }
         }
     }
@@ -111,6 +114,7 @@
             color: $color9;
             background: $color0;
             line-height: 1.3em;
+            white-space: nowrap;
         }
 
         .profile-pic-container {
@@ -131,7 +135,8 @@
             padding: 0.75rem 0 0.75rem 0.75rem;
             flex:none;
             width:66.66667%;
-            transition : all 0.6s ease;
+            transition : width 0.6s ease;
+            transition-delay: 1s;
             font-size: 130%;
         }
 
